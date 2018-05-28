@@ -780,8 +780,8 @@ public class UserCharakterModel {
 	@Column(name="zukunftsorientiert")
 	private boolean zukunftsorientiert;
 
-	@Column(name="zuverluessig")
-	private boolean zuverluessig;
+	@Column(name="zuverlaessig")
+	private boolean zuverlaessig;
 
 	@Column(name="zuversichtlich")
 	private boolean zuversichtlich;
@@ -2662,11 +2662,11 @@ public class UserCharakterModel {
 	}
 
 	public boolean isZuverluessig() {
-		return zuverluessig;
+		return zuverlaessig;
 	}
 
-	public void setZuverluessig(boolean zuverluessig) {
-		this.zuverluessig = zuverluessig;
+	public void setZuverluessig(boolean zuverlaessig) {
+		this.zuverlaessig = zuverlaessig;
 	}
 
 	public boolean isZuversichtlich() {
@@ -2923,7 +2923,7 @@ public class UserCharakterModel {
 		result = prime * result + (wortkarg ? 1231 : 1237);
 		result = prime * result + (zielstrebig ? 1231 : 1237);
 		result = prime * result + (zukunftsorientiert ? 1231 : 1237);
-		result = prime * result + (zuverluessig ? 1231 : 1237);
+		result = prime * result + (zuverlaessig ? 1231 : 1237);
 		result = prime * result + (zuversichtlich ? 1231 : 1237);
 		result = prime * result + (zuvorkommend ? 1231 : 1237);
 		return result;
@@ -3406,7 +3406,7 @@ public class UserCharakterModel {
 			return false;
 		if (zukunftsorientiert != other.zukunftsorientiert)
 			return false;
-		if (zuverluessig != other.zuverluessig)
+		if (zuverlaessig != other.zuverlaessig)
 			return false;
 		if (zuversichtlich != other.zuversichtlich)
 			return false;
@@ -3494,8 +3494,8 @@ public class UserCharakterModel {
 				+ ", vertrauenswuerdig=" + vertrauenswuerdig + ", vielschichtig=" + vielschichtig + ", weltoffen="
 				+ weltoffen + ", werteorientiert=" + werteorientiert + ", willensstark=" + willensstark
 				+ ", wissbegierig=" + wissbegierig + ", wortgewandt=" + wortgewandt + ", wortkarg=" + wortkarg
-				+ ", zielstrebig=" + zielstrebig + ", zukunftsorientiert=" + zukunftsorientiert + ", zuverluessig="
-				+ zuverluessig + ", zuversichtlich=" + zuversichtlich + ", zuvorkommend=" + zuvorkommend + "]";
+				+ ", zielstrebig=" + zielstrebig + ", zukunftsorientiert=" + zukunftsorientiert + ", zuverlaessig="
+				+ zuverlaessig + ", zuversichtlich=" + zuversichtlich + ", zuvorkommend=" + zuvorkommend + "]";
 	}
 
 	public UserCharakterModel() {
@@ -3550,7 +3550,7 @@ public class UserCharakterModel {
 			boolean vueterlich, boolean verantwortungsvoll, boolean verluesslich, boolean verstuendnisvoll,
 			boolean vertrauenswuerdig, boolean vielschichtig, boolean weltoffen, boolean werteorientiert,
 			boolean willensstark, boolean wissbegierig, boolean wortgewandt, boolean wortkarg, boolean zielstrebig,
-			boolean zukunftsorientiert, boolean zuverluessig, boolean zuversichtlich, boolean zuvorkommend) {
+			boolean zukunftsorientiert, boolean zuverlaessig, boolean zuversichtlich, boolean zuvorkommend) {
 		super();
 		this.abenteuerlustig = abenteuerlustig;
 		this.aberglueubisch = aberglueubisch;
@@ -3785,7 +3785,7 @@ public class UserCharakterModel {
 		this.wortkarg = wortkarg;
 		this.zielstrebig = zielstrebig;
 		this.zukunftsorientiert = zukunftsorientiert;
-		this.zuverluessig = zuverluessig;
+		this.zuverlaessig = zuverlaessig;
 		this.zuversichtlich = zuversichtlich;
 		this.zuvorkommend = zuvorkommend;
 	}
