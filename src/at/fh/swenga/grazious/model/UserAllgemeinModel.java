@@ -64,7 +64,7 @@ public class UserAllgemeinModel {
 		super();
 		this.vn = vn;
 		this.nn = nn;
-		this.gebdat = gebdat;
+		this.gebdat = 	gebdat;
 		this.email = email;
 		this.groesse = groesse;
 		this.statur = statur;

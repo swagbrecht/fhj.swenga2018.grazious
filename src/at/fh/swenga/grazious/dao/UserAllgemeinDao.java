@@ -21,14 +21,14 @@ public class UserAllgemeinDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
  
-	public List<UserAllgemeinModel> getEmployees() {
+	public List<UserAllgemeinModel> getUserAllgemeins() {
 		TypedQuery<UserAllgemeinModel> typedQuery = entityManager.createQuery("select u from UserAllgemeinModel u",
 				UserAllgemeinModel.class);
 		List<UserAllgemeinModel> typedResultList = typedQuery.getResultList();
 		return typedResultList;
 	}
  
-	public List<UserAllgemeinModel> searchEmployees(String searchString) {
+	public List<UserAllgemeinModel> searchUserAllgemein(String searchString) {
 		TypedQuery<UserAllgemeinModel> typedQuery = entityManager.createQuery(
 				"select u from EmployeeModel u where u.vn like :search or u.nn like :search",
 				UserAllgemeinModel.class);
