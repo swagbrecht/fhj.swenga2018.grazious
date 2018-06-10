@@ -45,12 +45,12 @@ public class UserDao {
 		entityManager.persist(userModel);
 	}
  
-	public UserAllgemeinModel merge(UserAllgemeinModel userAllgemein) {
-		return entityManager.merge(userAllgemein);
+	public UserModel merge(UserModel user) {
+		return entityManager.merge(user);
 	}
  
-	public void delete(UserAllgemeinModel userAllgemein) {
-		entityManager.remove(userAllgemein);
+	public void delete(UserModel user) {
+		entityManager.remove(user);
 	}
  
 	public int deleteAllEmployees() {
@@ -59,7 +59,7 @@ public class UserDao {
 	}
  
 	public void delete(int id) {
-		UserAllgemeinModel userAllgemein = getUserAllgemeins(id);
+		UserModel userAllgemein = getUsers(id);
 		if (userAllgemein != null)
 			delete(userAllgemein);
 	}
