@@ -16,7 +16,7 @@ import at.fh.swenga.grazious.model.UserAllgemeinModel;
  
 @Repository
 @Transactional
-public class UserAllgemeinDao {
+public class UserDao {
  
 	@PersistenceContext
 	protected EntityManager entityManager;

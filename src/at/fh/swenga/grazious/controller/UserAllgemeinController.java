@@ -11,19 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import at.fh.swenga.grazious.dao.UserAllgemeinDao;
-import at.fh.swenga.grazious.model.UserAllgemeinModel;
+import at.fh.swenga.grazious.dao.UserDao;
+import at.fh.swenga.grazious.model.UserModel;
 
 @Controller
-public class UserAllgemeinController {
+public class UserController {
 
 	@Autowired
-	UserAllgemeinDao userAllgemeinDao;
+	UserDao userAllgemeinDao;
 	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
  
-		List<UserAllgemeinModel> userAllgemeins = userAllgemeinDao.getUserAllgemeins();
+		List<UserModel> userAllgemeins = UserDao.getUserAllgemeins();
 		model.addAttribute("userAllgemeins", userAllgemeins);
 		return "index";
 	}
@@ -35,7 +35,7 @@ public class UserAllgemeinController {
  
 		Date now = new Date();
  
-		UserAllgemeinModel p1 = new UserAllgemeinModel("Adalbert", "Bergmann", now, "adalbert.bergmann@graz.at");
+		UserModel p1 = new UserModel("Adalbert", "Bergmann", now, "adalbert.bergmann@graz.at");
 		userAllgemeinDao.persist(p1);
  
  

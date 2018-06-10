@@ -2,7 +2,6 @@ package at.fh.swenga.jpa.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,46 +14,53 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "user_roles")
-public class UserRoleModel implements java.io.Serializable {
+@Table(name = "bezirk")
+public class BezirkeModel implements java.io.Serializable {
 	private static final long serialVersionUID = 8098173157518993615L;
 	
 	
 	@Id
-	@Column(name = "userRoleId")
+	@Column(name = "bezirkId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userRoleId;
-	private String role;
-	@OneToMany(mappedBy="user_roles",fetch=FetchType.LAZY)
+	private Integer bezirkId;
+	private String name;
+	private String plz;
+	@OneToMany(mappedBy="bezirk",fetch=FetchType.LAZY)
 	private Set<UserModel> user;
 	
-	
-	public UserRoleModel() {
+	public BezirkeModel() {
 		super();
 	}
 
-	public UserRoleModel(Integer userRoleId, String role, Set<UserModel> user) {
+	public BezirkeModel(String name, String plz, Set<UserModel> user) {
 		super();
-		this.userRoleId = userRoleId;
-		this.role = role;
+		this.name = name;
+		this.plz = plz;
 		this.user = user;
 	}
 
-
-	public String getRole() {
-		return role;
+	public Integer getBezirkId() {
+		return bezirkId;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setBezirkId(Integer bezirkId) {
+		this.bezirkId = bezirkId;
 	}
 
-	public Integer getUserRoleId() {
-		return userRoleId;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserRoleId(Integer userRoleId) {
-		this.userRoleId = userRoleId;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPlz() {
+		return plz;
+	}
+
+	public void setPlz(String plz) {
+		this.plz = plz;
 	}
 
 	public Set<UserModel> getUser() {
@@ -64,9 +70,7 @@ public class UserRoleModel implements java.io.Serializable {
 	public void setUser(Set<UserModel> user) {
 		this.user = user;
 	}
-
+	
 	
 
-	
-	}
-	
+}

@@ -2,7 +2,6 @@ package at.fh.swenga.jpa.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,46 +14,46 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "user_roles")
-public class UserRoleModel implements java.io.Serializable {
+@Table(name = "geschlecht")
+public class GeschlechtModel implements java.io.Serializable {
 	private static final long serialVersionUID = 8098173157518993615L;
 	
 	
 	@Id
-	@Column(name = "userRoleId")
+	@Column(name = "geschlechtId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userRoleId;
-	private String role;
-	@OneToMany(mappedBy="user_roles",fetch=FetchType.LAZY)
+	private Integer geschlechtId;
+	private String geschlechtBezeichnung;
+	
+	@OneToMany(mappedBy="geschlecht",fetch=FetchType.LAZY)
 	private Set<UserModel> user;
+
 	
 	
-	public UserRoleModel() {
+	public GeschlechtModel() {
 		super();
 	}
 
-	public UserRoleModel(Integer userRoleId, String role, Set<UserModel> user) {
+	public GeschlechtModel(String geschlechtBezeichnung, Set<UserModel> user) {
 		super();
-		this.userRoleId = userRoleId;
-		this.role = role;
+		this.geschlechtBezeichnung = geschlechtBezeichnung;
 		this.user = user;
 	}
 
-
-	public String getRole() {
-		return role;
+	public Integer getGeschlechtId() {
+		return geschlechtId;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setGeschlechtId(Integer geschlechtId) {
+		this.geschlechtId = geschlechtId;
 	}
 
-	public Integer getUserRoleId() {
-		return userRoleId;
+	public String getGeschlechtBezeichnung() {
+		return geschlechtBezeichnung;
 	}
 
-	public void setUserRoleId(Integer userRoleId) {
-		this.userRoleId = userRoleId;
+	public void setGeschlechtBezeichnung(String geschlechtBezeichnung) {
+		this.geschlechtBezeichnung = geschlechtBezeichnung;
 	}
 
 	public Set<UserModel> getUser() {
@@ -66,7 +65,6 @@ public class UserRoleModel implements java.io.Serializable {
 	}
 
 	
-
 	
 	}
 	
