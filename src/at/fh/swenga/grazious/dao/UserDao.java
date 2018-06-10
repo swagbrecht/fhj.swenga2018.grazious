@@ -12,7 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import at.fh.swenga.grazious.model.UserAllgemeinModel;
+import at.fh.swenga.grazious.model.UserModel;
  
 @Repository
 @Transactional
@@ -21,28 +21,28 @@ public class UserDao {
 	@PersistenceContext
 	protected EntityManager entityManager;
  
-	public List<UserAllgemeinModel> getUserAllgemeins() {
-		TypedQuery<UserAllgemeinModel> typedQuery = entityManager.createQuery("select u from UserAllgemeinModel u",
-				UserAllgemeinModel.class);
-		List<UserAllgemeinModel> typedResultList = typedQuery.getResultList();
+	public List<UserModel> getUsers() {
+		TypedQuery<UserModel> typedQuery = entityManager.createQuery("select u from UserModel u",
+				UserModel.class);
+		List<UserModel> typedResultList = typedQuery.getResultList();
 		return typedResultList;
 	}
  
-	public List<UserAllgemeinModel> searchUserAllgemein(String searchString) {
-		TypedQuery<UserAllgemeinModel> typedQuery = entityManager.createQuery(
-				"select u from EmployeeModel u where u.vn like :search or u.nn like :search",
-				UserAllgemeinModel.class);
+	public List<UserModel> searchUserAllgemein(String searchString) {
+		TypedQuery<UserModel> typedQuery = entityManager.createQuery(
+				"select u from UserModel u where u.vn like :search or u.nn like :search",
+				UserModel.class);
 		typedQuery.setParameter("search", "%" + searchString + "%");
-		List<UserAllgemeinModel> typedResultList = typedQuery.getResultList();
+		List<UserModel> typedResultList = typedQuery.getResultList();
 		return typedResultList;
 	}
  
-	public UserAllgemeinModel getUserAllgemeins(int i) throws DataAccessException {
-		return entityManager.find(UserAllgemeinModel.class, i);
+	public UserModel getUsers(int i) throws DataAccessException {
+		return entityManager.find(UserModel.class, i);
 	}
  
-	public void persist(UserAllgemeinModel userAllgemein) {
-		entityManager.persist(userAllgemein);
+	public void persist(UserModel userModel) {
+		entityManager.persist(userModel);
 	}
  
 	public UserAllgemeinModel merge(UserAllgemeinModel userAllgemein) {

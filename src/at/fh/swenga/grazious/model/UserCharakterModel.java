@@ -1,4 +1,4 @@
-package at.fh.swenga.jpa.model;
+package at.fh.swenga.grazious.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

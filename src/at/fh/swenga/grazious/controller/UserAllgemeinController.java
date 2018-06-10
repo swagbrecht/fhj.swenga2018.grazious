@@ -35,7 +35,7 @@ public class UserController {
  
 		Date now = new Date();
  
-		UserModel p1 = new UserModel("Adalbert", "Bergmann", now, "adalbert.bergmann@graz.at");
+		UserModel p1 = new UserModel("adi2002", "Adalbert", "Bergmann", "123", "adalbert.bergmann@graz.at");
 		userAllgemeinDao.persist(p1);
  
  

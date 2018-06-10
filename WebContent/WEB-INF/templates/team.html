@@ -36,63 +36,36 @@
 				<table data-toggle="table" class="table table-striped">
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>Vorname</th>
-							<th>Nachname</th>
-							<th>Geburtsdatum</th>
-							<th>Email</th>
-							<th>Größe</th>
-							<th>Statur</th>
-							<th>Geschlecht</th>
-							<th>Aktion</th>
+							<th>Bild</th>
+							<th>Name</th>
+							<th>Aufgabenbereich</th>
+							<th>Kurzvorstellung</th>
 						</tr>
 					</thead>
 					<tbody>
-						<!--  list all items ----------------------------------------------------------- -->
-						<tr th:each="userAllgemein : ${userAllgemeins}">
-							<td th:text="${userAllgemein.id}"></td>
-							<td th:text="${userAllgemein.vn}"></td>
-							<td th:text="${userAllgemein.nn}"></td>
-							<td th:text="${#dates.format(userAllgemein.gebdat,'dd.MM.yyyy')}"></td>
-							<td th:text="${userAllgemein.email}"></td>
-							<td th:text="${userAllgemein.groesse}"></td>
-							<td th:text="${userAllgemein.statur}"></td>
-							<td th:text="${userAllgemein.geschlecht}"></td>
-							
-							<td><a th:href="@{/delete(id=${userAllgemein.id})}">Delete</a></td>
-							
-						</tr>
-						<!--  list all items ----------------------------------------------------------- -->
+							<tr>
+							<td>-</td>
+							<td>Gerhard Lambrecht</td>
+							<td>Design, Bier</td>
+							<td>-folgt-</td>
+							</tr>
+							<tr>
+							<td>-</td>
+							<td>Verena Leifert</td>
+							<td>Datenbank, Essen</td>
+							<td>-folgt-</td>
+							</tr>
+							<tr>
+							<td>-</td>
+							<td>Marvin Tandler</td>
+							<td>Java, Kaffee</td>
+							<td>-folgt-</td>
+							</tr>
 					</tbody>
 				</table>
-				
-				<!--  list all Departments ----------------------------------------------------------- -->
-				
-
-			<!--  list all Departments ----------------------------------------------------------- -->
-
-<!--  list all projects ----------------------------------------------------------- -->
-<!--  list all projects ----------------------------------------------------------- -->
-				
 			</div>
-				<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div>
-</div>
 		</div>
-		
 	</div>
-	
-
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
