@@ -33,13 +33,14 @@ public class UserAussehenModel implements java.io.Serializable {
 	private Integer groesse;
 	private Boolean tattoos;
 	private Boolean piercings;
+	private Boolean brille;
 	private UserModel user;
 	
 	public UserAussehenModel() {
 		super();
 	}
 	public UserAussehenModel(Integer aussehenId, HaarfarbeModel haarfarbe, AugenfarbeModel augenfarbe,
-			HautfarbeModel hautfarbe, StaturModel statur, Integer groesse, Boolean tattoos, Boolean piercings,
+			HautfarbeModel hautfarbe, StaturModel statur, Integer groesse, Boolean tattoos, Boolean piercings, Boolean brille,
 			UserModel user) {
 		super();
 		this.aussehenId = aussehenId;
@@ -50,6 +51,7 @@ public class UserAussehenModel implements java.io.Serializable {
 		this.groesse = groesse;
 		this.tattoos = tattoos;
 		this.piercings = piercings;
+		this.brille = brille;
 		this.user = user;
 	}
 	public Integer getAussehenId() {
@@ -99,6 +101,19 @@ public class UserAussehenModel implements java.io.Serializable {
 	}
 	public void setPiercings(Boolean piercings) {
 		this.piercings = piercings;
+	}
+	
+	public HaarlaengeModel getHaarlaenge() {
+		return haarlaenge;
+	}
+	public void setHaarlaenge(HaarlaengeModel haarlaenge) {
+		this.haarlaenge = haarlaenge;
+	}
+	public Boolean getBrille() {
+		return brille;
+	}
+	public void setBrille(Boolean brille) {
+		this.brille = brille;
 	}
 	public UserModel getUser() {
 		return user;
