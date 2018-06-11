@@ -3,9 +3,13 @@
 
 		<!-- Button to fill the list-->
 				<a href="index" class="btn btn-default navbar-btn">Home</a>
-				<a href="about" class="btn btn-default navbar-btn">Über</a>
+				<td><a sec:authorize="isAuthenticated()" th:href="@{/search}">Search</a></td>
+				<td><a sec:authorize="isAuthenticated()" th:href="@{/profile(id=${user.id})}">MeinProfil</a></td>
+				<td><a sec:authorize="isAuthenticated()" th:href="@{/edit}">Profil Bearbeiten</a></td>				
+				<a href="about" class="btn btn-default navbar-btn">ï¿½ber</a>
 				<a href="team" class="btn btn-default navbar-btn">Das Team</a>
 				<a href="impr" class="btn btn-default navbar-btn">Impressum</a>
+				<td> <a sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">LogOut</a>
 				
 
 		<!-- HTML form with search textbox and submit button-->
