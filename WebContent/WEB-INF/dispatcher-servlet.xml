@@ -4,7 +4,8 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
- 
+	xmlns:sec="http://www.springframework.org/schema/security"
+
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -17,48 +18,47 @@
 		http://www.springframework.org/schema/util 
 		http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd">
- 
- 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+
 	<!-- Read settings from external file and replace all ${...} in the xml -->
 	<context:property-placeholder location="classpath:db.properties" />
- 
- 
+
+	<sec:global-method-security secured-annotations="enabled" />
+
 	<!-- - POJOs labeled with the @Controller and @Service annotations are auto-detected. -->
 	<context:component-scan base-package="at.fh.swenga" />
- 
+
 	<!-- JSR-303/JSR-349 support will be detected on classpath and enabled automatically -->
 	<mvc:annotation-driven />
-	
+
 	<mvc:default-servlet-handler />
 
- 
 	<bean id="templateResolver"
 		class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
 		<property name="prefix" value="/WEB-INF/templates/" />
 		<property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML5" />
+		<property name="templateMode" value="HTML" />
 		<property name="cacheable" value="false" />
 	</bean>
- 
+
 	<bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
-		<property name="enableSpringELCompiler" value="true" />
+		<property name="enableSpringELCompiler" value="false" />
+		<property name="additionalDialects">
+		<set>
+			<bean
+			class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
+		</set>
+	</property>
 	</bean>
- 
+
 	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 	</bean>
- 
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="${db.url}" />
-		<property name="username" value="${db.username}" />
-		<property name="password" value="${db.password}" />
-		<property name="initialSize" value="2" />
-		<property name="maxTotal" value="5" />
-	</bean>
- 
+
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		id="entityManagerFactory">
@@ -78,7 +78,7 @@
 			</props>
 		</property>
 	</bean>
- 
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
