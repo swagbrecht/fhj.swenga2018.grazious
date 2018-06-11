@@ -37,7 +37,7 @@ public class UserDao {
 		return typedResultList;
 	}
  
-	public UserModel getUsers(int i) throws DataAccessException {
+	public UserModel getUser(int i) throws DataAccessException {
 		return entityManager.find(UserModel.class, i);
 	}
  
@@ -59,7 +59,7 @@ public class UserDao {
 	}
  
 	public void delete(int id) {
-		UserModel userAllgemein = getUsers(id);
+		UserModel userAllgemein = getUser(id);
 		if (userAllgemein != null)
 			delete(userAllgemein);
 	}

@@ -34,10 +34,9 @@ public class GeschlechtModel implements java.io.Serializable {
 		super();
 	}
 
-	public GeschlechtModel(String geschlechtBezeichnung, Set<UserModel> user) {
+	public GeschlechtModel(String geschlechtBezeichnung) {
 		super();
 		this.geschlechtBezeichnung = geschlechtBezeichnung;
-		this.user = user;
 	}
 
 	public Integer getGeschlechtId() {

@@ -23,6 +23,8 @@ public class UserAussehenModel implements java.io.Serializable {
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private HaarfarbeModel haarfarbe;
 	@ManyToOne (cascade = CascadeType.PERSIST)
+	private HaarlaengeModel haarlaenge;
+	@ManyToOne (cascade = CascadeType.PERSIST)
 	private AugenfarbeModel augenfarbe;
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private HautfarbeModel hautfarbe;

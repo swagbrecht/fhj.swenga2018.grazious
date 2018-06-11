@@ -29,10 +29,9 @@ public class AugenfarbeModel implements java.io.Serializable {
 	public AugenfarbeModel() {
 		super();
 	}
-	public AugenfarbeModel(String augenfarbeBezeichnung, Set<UserAussehenModel> aussehen) {
+	public AugenfarbeModel(String augenfarbeBezeichnung) {
 		super();
 		this.augenfarbeBezeichnung = augenfarbeBezeichnung;
-		this.aussehen = aussehen;
 	}
 	public Integer getAugenfarbeId() {
 		return augenfarbeId;

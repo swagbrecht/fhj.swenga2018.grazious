@@ -14,36 +14,39 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "haarfarbe")
-public class HaarfarbeModel implements java.io.Serializable {
+@Table(name = "haarlänge")
+public class HaarlaengeModel implements java.io.Serializable {
 	private static final long serialVersionUID = 8098173157518993615L;
 	
 	@Id
-	@Column(name = "haarfarbeId")
+	@Column(name = "haarlaengeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer haarfarbeId;
-	private String haarfarbeBezeichnung;
-	@OneToMany(mappedBy="haarfarbe",fetch=FetchType.LAZY)
+	private Integer haarlaengeId;
+	private String haarlaenge;
+	@OneToMany(mappedBy="haarlaenge",fetch=FetchType.LAZY)
 	private Set<UserAussehenModel> aussehen;
-	public HaarfarbeModel() {
+	public HaarlaengeModel() {
 		super();
 	}
-	public HaarfarbeModel(String haarfarbeBezeichnung) {
+	public HaarlaengeModel(String haarlaenge) {
 		super();
-		this.haarfarbeBezeichnung = haarfarbeBezeichnung;
+		this.haarlaenge = haarlaenge;
 	}
-	public Integer getHaarfarbeId() {
-		return haarfarbeId;
+
+	public Integer getHaarlaengeId() {
+		return haarlaengeId;
 	}
-	public void setHaarfarbeId(Integer haarfarbeId) {
-		this.haarfarbeId = haarfarbeId;
+	public void setHaarlaengeId(Integer haarlaengeId) {
+		this.haarlaengeId = haarlaengeId;
 	}
-	public String getHaarfarbeBezeichnung() {
-		return haarfarbeBezeichnung;
+	public String getHaarlaenge() {
+		return haarlaenge;
 	}
-	public void setHaarfarbeBezeichnung(String haarfarbeBezeichnung) {
-		this.haarfarbeBezeichnung = haarfarbeBezeichnung;
+	public void setHaarlaenge(String haarlaenge) {
+		this.haarlaenge = haarlaenge;
 	}
+
+	
 	public Set<UserAussehenModel> getAussehen() {
 		return aussehen;
 	}

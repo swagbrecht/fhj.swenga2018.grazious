@@ -30,11 +30,10 @@ public class BezirkeModel implements java.io.Serializable {
 		super();
 	}
 
-	public BezirkeModel(String name, String plz, Set<UserModel> user) {
+	public BezirkeModel(String name, String plz) {
 		super();
 		this.name = name;
 		this.plz = plz;
-		this.user = user;
 	}
 
 	public Integer getBezirkId() {
