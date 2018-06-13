@@ -43,7 +43,7 @@ public class UserController {
 		AugenfarbeModel au1_hellblau= new AugenfarbeModel("hellblau");
 		AugenfarbeModel au2_dunkelblau= new AugenfarbeModel("dunkelblau");
 		AugenfarbeModel au3_grau= new AugenfarbeModel("grau");
-		AugenfarbeModel au4_grün= new AugenfarbeModel("grün");
+		AugenfarbeModel au4_gruen= new AugenfarbeModel("gruen");
 		AugenfarbeModel au5_hellbraun= new AugenfarbeModel("hellbraun");
 		AugenfarbeModel au6_dunkelbraun= new AugenfarbeModel("dunkelbraun");
 		
@@ -59,13 +59,13 @@ public class UserController {
 		BezirkeModel b10_Ries= new BezirkeModel("Ries", "8010");
 		BezirkeModel b11_Mariatrost= new BezirkeModel("Mariatrost", "8043");
 		BezirkeModel b12_Andritz= new BezirkeModel("Andritz", "8045");
-		BezirkeModel b13_Gösting= new BezirkeModel("Gösting", "8051");
+		BezirkeModel b13_Goesting= new BezirkeModel("Goesting", "8051");
 		BezirkeModel b14_Eggenberg= new BezirkeModel("Eggenberg", "8020");
 		BezirkeModel b15_Wetzelsdorf= new BezirkeModel("Wetzelsdorf", "8052");
-		BezirkeModel b16_Straßgang= new BezirkeModel("Straßgang", "8054");
+		BezirkeModel b16_Strassgang= new BezirkeModel("Strassgang", "8054");
 		BezirkeModel b17_Puntigam= new BezirkeModel("Puntigam", "8055");
 		
-		GeschlechtModel g1_m=new GeschlechtModel ("männlich");
+		GeschlechtModel g1_m=new GeschlechtModel ("maennlich");
 		GeschlechtModel g2_w=new GeschlechtModel ("weiblich");
 		GeschlechtModel g3_a=new GeschlechtModel ("anderes");
 		
@@ -79,8 +79,8 @@ public class UserController {
 		HaarfarbeModel haa8_s=new HaarfarbeModel("Schwarz");
 		HaarfarbeModel haa9_r=new HaarfarbeModel("Rot");
 		HaarfarbeModel haa10_b=new HaarfarbeModel("Blau");
-		HaarfarbeModel haa11_gr=new HaarfarbeModel("Grün");
-		HaarfarbeModel haa12_w=new HaarfarbeModel("Weiß");
+		HaarfarbeModel haa11_gr=new HaarfarbeModel("Gruen");
+		HaarfarbeModel haa12_w=new HaarfarbeModel("Weiss");
 		HaarfarbeModel haa13_g=new HaarfarbeModel("Grau");
 		HaarfarbeModel haa14_p=new HaarfarbeModel("Pink");
 		
@@ -88,12 +88,12 @@ public class UserController {
 		HaarlaengeModel hal2_sehrKurz= new HaarlaengeModel("sehr kurz");
 		HaarlaengeModel hal3_kurz= new HaarlaengeModel("kurz");
 		HaarlaengeModel hal4_ohren= new HaarlaengeModel("bis zu den Ohren");
-		HaarlaengeModel hal5_kinn= new HaarlaengeModel("Kinnlänge");
+		HaarlaengeModel hal5_kinn= new HaarlaengeModel("Kinnlaenge");
 		HaarlaengeModel hal6_schulter= new HaarlaengeModel("Schulterlang");
 		HaarlaengeModel hal7_brust= new HaarlaengeModel("bis zur Brust");
 		HaarlaengeModel hal8_bauch= new HaarlaengeModel("bis zum Bauch");
-		HaarlaengeModel hal9_hüfte= new HaarlaengeModel("bis zur Hüfte");
-		HaarlaengeModel hal9_länger= new HaarlaengeModel("über die Hüfte");
+		HaarlaengeModel hal9_huefte= new HaarlaengeModel("bis zur Huefte");
+		HaarlaengeModel hal9_laenger= new HaarlaengeModel("Ueber die Huefte");
 		
 		
 		
