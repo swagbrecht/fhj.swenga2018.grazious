@@ -20,9 +20,12 @@ public class HaarfarbeModel implements java.io.Serializable {
 	@Column(name = "haarfarbeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer haarfarbeId;
+	
 	private String haarfarbeBezeichnung;
+	
 	@OneToMany(mappedBy="haarfarbe",fetch=FetchType.LAZY)
 	private Set<UserAussehenModel> aussehen;
+	
 	public HaarfarbeModel() {
 		super();
 	}
@@ -30,6 +33,7 @@ public class HaarfarbeModel implements java.io.Serializable {
 		super();
 		this.haarfarbeBezeichnung = haarfarbeBezeichnung;
 	}
+	
 	public Integer getHaarfarbeId() {
 		return haarfarbeId;
 	}

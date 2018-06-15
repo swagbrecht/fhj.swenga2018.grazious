@@ -23,11 +23,15 @@ public class ProfilFotoModel implements java.io.Serializable {
 	@Column(name = "fotoId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer fotoId;
+	
 	private String fileName;
+	
 	@Lob	
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] foto;
+	
 	private Date uploaded;
+	
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private UserModel user;
 	

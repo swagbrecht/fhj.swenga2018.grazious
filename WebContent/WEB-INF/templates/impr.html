@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <div th:replace="~{includes/bootstrap :: bootstrapMeta}" />
-<title>Test</title>
+<title>Impressum</title>
 <div th:replace="~{includes/bootstrap :: bootstrapCSS}" />
 </head>
 <body>
@@ -33,46 +33,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 
-				<table data-toggle="table" class="table table-striped">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Vorname</th>
-							<th>Nachname</th>
-							<th>Geburtsdatum</th>
-							<th>Email</th>
-							<th>Größe</th>
-							<th>Statur</th>
-							<th>Geschlecht</th>
-							<th>Aktion</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!--  list all items ----------------------------------------------------------- -->
-						<tr th:each="userAllgemein : ${userAllgemeins}">
-							<td th:text="${userAllgemein.id}"></td>
-							<td th:text="${userAllgemein.vn}"></td>
-							<td th:text="${userAllgemein.nn}"></td>
-							<td th:text="${#dates.format(userAllgemein.gebdat,'dd.MM.yyyy')}"></td>
-							<td th:text="${userAllgemein.email}"></td>
-							<td th:text="${userAllgemein.groesse}"></td>
-							<td th:text="${userAllgemein.statur}"></td>
-							<td th:text="${userAllgemein.geschlecht}"></td>
-							
-							<td><a th:href="@{/delete(id=${userAllgemein.id})}">Delete</a></td>
-							
-						</tr>
-						<!--  list all items ----------------------------------------------------------- -->
-					</tbody>
-				</table>
-				
-				<!--  list all Departments ----------------------------------------------------------- -->
-				
-
-			<!--  list all Departments ----------------------------------------------------------- -->
-
-<!--  list all projects ----------------------------------------------------------- -->
-<!--  list all projects ----------------------------------------------------------- -->
+				<h1>Impressum</h1>
 				
 			</div>
 		</div>
