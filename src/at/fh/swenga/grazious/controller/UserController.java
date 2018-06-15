@@ -25,13 +25,27 @@ public class UserController {
 	@Autowired
 	UserDao userDao;
 	
-	@RequestMapping(value = { "/", "list" })
+	@RequestMapping(value = { "/", "list", "index"})
 	public String index(Model model) {
 		List<UserModel> users = userDao.getUsers();
 		model.addAttribute("users", users);
 		return "index";
 	}
+	
+	@RequestMapping("/about")
+	public String about() {
+		return "about";
+	}
  
+	@RequestMapping("/team")
+	public String team() {
+		return "team";
+	}
+	@RequestMapping("/impr")
+	public String impr() {
+		return "impr";
+	}
+	
 	@RequestMapping("/fillUserList")
 	@Transactional
 	public String fillData(Model model) {
