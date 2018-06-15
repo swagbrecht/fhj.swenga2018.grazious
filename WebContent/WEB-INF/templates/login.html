@@ -50,6 +50,47 @@
 
 			</div>
 		</div>
+		
+		<div class="login_wrapper">
+				<section class="login_content">
+					<form th:action="@{/login}" method="post">					
+						<h1>Einloggen</h1>
+						<div th:if="${param.error}" class="alert alert-danger">
+							Benutzername oder Passwort falsch.</div>
+						<div th:if="${param.logout}" class="alert alert-success">
+							Sie wurden erfolgreich ausgeloggt.</div>
+						<div>
+							<input type="text" id="un" class="form-control"
+								placeholder="Benutzername" required autofocus name="un" />
+						</div>
+						<div>
+							<input type="password" id="pwd" class="form-control"
+								placeholder="Passwort" required name="pwd" />
+						</div>
+						<div>
+							<button class="btn button-main" type="submit">Einloggen</button>
+							//<a class="reset_pass" href="mailto:admin@feuerwehr.at?subject=FireFighters Passwort vergessen" style="margin-top:0px">Passwort vergessen?</a>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="separator">
+							<p class="change_link">
+								Interessiert? <a th:href="@{/registration}" class="to_register" style="margin:0">Registrieren Sie sich!</a>
+							</p>
+
+							<div class="clearfix"></div>
+							<br />
+
+							<div>
+								<h1>Project Firefighters</h1>
+								<p class="change_link"><a href="mailto:admin@feuerwehr.at?subject=FireFighters Anfrage" style="margin:0">Kontakt</a> | <a th:href="@{/impressum_login}" style="margin:0">Impressum</a></p>
+								<p>&copy; 2017 Alle Rechte vorbehalten.</p>
+							</div>
+						</div>
+					</form>
+				</section>
+		</div>
 		<!--  End of container -->
 </body>
 </html>

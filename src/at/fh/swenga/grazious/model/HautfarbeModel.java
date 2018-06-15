@@ -21,9 +21,12 @@ public class HautfarbeModel implements java.io.Serializable {
 	@Column(name = "hautfarbeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer hautfarbeId;
+	
 	private String hautfarbeBezeichnung;
+	
 	@OneToMany(mappedBy="hautfarbe",fetch=FetchType.LAZY)
 	private Set<UserAussehenModel> aussehen;
+	
 	public HautfarbeModel() {
 		super();
 	}
@@ -32,6 +35,7 @@ public class HautfarbeModel implements java.io.Serializable {
 		this.hautfarbeBezeichnung = hautfarbeBezeichnung;
 		this.aussehen = aussehen;
 	}
+	
 	public Integer getHautfarbeId() {
 		return hautfarbeId;
 	}

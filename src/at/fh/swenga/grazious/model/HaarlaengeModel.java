@@ -22,12 +22,16 @@ public class HaarlaengeModel implements java.io.Serializable {
 	@Column(name = "haarlaengeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer haarlaengeId;
+	
 	private String haarlaenge;
+	
 	@OneToMany(mappedBy="haarlaenge",fetch=FetchType.LAZY)
 	private Set<UserAussehenModel> aussehen;
+	
 	public HaarlaengeModel() {
 		super();
 	}
+	
 	public HaarlaengeModel(String haarlaenge) {
 		super();
 		this.haarlaenge = haarlaenge;

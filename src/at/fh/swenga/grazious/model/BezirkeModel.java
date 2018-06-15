@@ -21,8 +21,11 @@ public class BezirkeModel implements java.io.Serializable {
 	@Column(name = "bezirkId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bezirkId;
+	
 	private String name;
+	
 	private String plz;
+	
 	@OneToMany(mappedBy="bezirk",fetch=FetchType.LAZY)
 	private Set<UserModel> user;
 	

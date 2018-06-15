@@ -21,6 +21,7 @@ public class GeschlechtModel implements java.io.Serializable {
 	@Column(name = "geschlechtId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer geschlechtId;
+	
 	private String geschlechtBezeichnung;
 	
 	@OneToMany(mappedBy="geschlecht",fetch=FetchType.LAZY)

@@ -21,9 +21,14 @@ public class AugenfarbeModel implements java.io.Serializable {
 	@Column(name = "augenfarbeId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer augenfarbeId;
+	
 	private String augenfarbeBezeichnung;
+	
 	@OneToMany(mappedBy="augenfarbe",fetch=FetchType.LAZY)
 	private Set<UserAussehenModel> aussehen;
+	
+	
+	
 	public AugenfarbeModel() {
 		super();
 	}
@@ -31,6 +36,8 @@ public class AugenfarbeModel implements java.io.Serializable {
 		super();
 		this.augenfarbeBezeichnung = augenfarbeBezeichnung;
 	}
+	
+	
 	public Integer getAugenfarbeId() {
 		return augenfarbeId;
 	}
