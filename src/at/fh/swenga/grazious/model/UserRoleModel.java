@@ -23,7 +23,8 @@ public class UserRoleModel implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
- 
+	
+	@Column(name = "users", nullable = false)
 	@ManyToMany(mappedBy = "role", fetch = FetchType.LAZY)
 	private Set<UserModel> users;
  

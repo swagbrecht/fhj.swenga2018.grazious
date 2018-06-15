@@ -16,9 +16,17 @@ public class UserCharakterModel implements java.io.Serializable {
 	@Column(name = "charakterId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer charakterId;
+	
+	@Column(name = "charakterBezeichnung")
 	private String charakterBezeichnung;
+	
+	@Column(name = "trifftZu")
 	private Boolean trifftZu;
+	
+	@Column(name = "user")
 	private UserModel user;
+	
+	
 	public UserCharakterModel() {
 		super();
 	}

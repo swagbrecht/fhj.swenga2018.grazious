@@ -20,20 +20,38 @@ public class UserAussehenModel implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer aussehenId;
 	
+
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private HaarfarbeModel haarfarbe;
+	
+	
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private HaarlaengeModel haarlaenge;
+	
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private AugenfarbeModel augenfarbe;
+	
+
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private HautfarbeModel hautfarbe;
+	
+
 	@ManyToOne (cascade = CascadeType.PERSIST)
 	private StaturModel statur;
+	
+	@Column(name = "groesse")
 	private Integer groesse;
+	
+	@Column(name = "tattoos")
 	private Boolean tattoos;
+	
+	@Column(name = "piercings")
 	private Boolean piercings;
+	
+	@Column(name = "brille")
 	private Boolean brille;
+	
+	@Column(name = "user")
 	private UserModel user;
 	
 	public UserAussehenModel() {

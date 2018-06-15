@@ -24,13 +24,26 @@ public class UserModel implements java.io.Serializable {
 	@Column(name = "userId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
+	
+	@Column(name = "username", nullable = false, length = 20, unique = true)
 	private String un;
+	
+	@Column(name = "vorname", nullable = false, length = 20)
 	private String vn;
+	
+	@Column(name = "nachname", nullable = false, length = 20)
 	private String nn;
+	
+	@Column(name = "password", nullable = false)
 	private String pwd;
+	
+	@Column(name = "email", nullable = false)
 	private String email;
+	
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserAussehenModel aussehen;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserCharakterModel charakter;
 	
