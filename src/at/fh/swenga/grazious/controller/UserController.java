@@ -3,11 +3,11 @@ package at.fh.swenga.grazious.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,9 +27,8 @@ public class UserController {
 	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
- 
-		List<UserModel> users = UserDao.getUsers();
-		model.addAttribute("user", users);
+		List<UserModel> users = userDao.getUsers();
+		model.addAttribute("users", users);
 		return "index";
 	}
  
@@ -118,7 +117,7 @@ public class UserController {
 		return "forward:list";
 	}
  
-	// @ExceptionHandler(Exception.class)
+	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
  
 		return "error";
