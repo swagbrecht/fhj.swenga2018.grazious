@@ -8,11 +8,6 @@
 </head>
 <body>
 	<div class="container" role="main">
-
-		<div class="page-header">
-			<img src="logo_grz.jpeg" height="200px" width="160px" />
-		</div>
-
 		<!--  Error message ----------------------------------------------------------- -->
 		<div th:unless="${errorMessage} == null" th:utext="${errorMessage}"
 			class="alert alert-danger" role="alert"></div>
