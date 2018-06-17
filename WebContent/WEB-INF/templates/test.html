@@ -1,0 +1,26 @@
+<table data-toggle="table" class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Username</th>
+			<th>E-mail</th>
+			<th>Geschlecht</th>
+			<th>Region</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--  list all items ----------------------------------------------------------- -->
+		<tr th:each="user : ${users}">
+			<td th:text="${user.userId}"></td>
+			<td th:text="${user.firstName}"></td>
+			<td th:text="${user.lastName}"></td>
+			<td th:text="${user.username}"></td>
+			<td th:text="${user.email}"></td>
+			<td th:text="${user.gender.name}"></td>
+			<td th:text="${user.region.name}"></td>			
+		</tr>
+		<!--  list all items ----------------------------------------------------------- -->
+	</tbody>
+</table>
