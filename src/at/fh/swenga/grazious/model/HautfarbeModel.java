@@ -33,7 +33,6 @@ public class HautfarbeModel implements java.io.Serializable {
 	public HautfarbeModel(String hautfarbeBezeichnung, Set<UserAussehenModel> aussehen) {
 		super();
 		this.hautfarbeBezeichnung = hautfarbeBezeichnung;
-		this.aussehen = aussehen;
 	}
 	
 	public Integer getHautfarbeId() {
