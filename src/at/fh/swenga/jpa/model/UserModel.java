@@ -1,6 +1,7 @@
 package at.fh.swenga.jpa.model;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "user")
@@ -35,6 +38,9 @@ public class UserModel implements java.io.Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<PersonalCharacterModel> personalCharacters;
+	
+	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
+	private Set<UserRoleModel> userRoles;
 		
 	@Id
 	@Column(name = "userId")
@@ -150,6 +156,14 @@ public class UserModel implements java.io.Serializable {
 
 	public void setPersonalCharacters(Set<PersonalCharacterModel> personalCharacters) {
 		this.personalCharacters = personalCharacters;
+	}
+
+	public Set<UserRoleModel> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(Set<UserRoleModel> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	public Integer getUserId() {
@@ -287,8 +301,16 @@ public class UserModel implements java.io.Serializable {
 	public void setIsPremium(Boolean isPremium) {
 		this.isPremium = isPremium;
 	}
+	
+	public void addUserRole(UserRoleModel userRole) {
+		if (userRoles == null) 
+			userRoles = new HashSet<UserRoleModel>();
+		userRoles.add(userRole);
+	}
 
-//	@ManyToOne (cascade = CascadeType.PERSIST)
-//  private UserRoleModel role;
+	public void encryptPassword() {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		password = passwordEncoder.encode(password);		
+	}
 
 }

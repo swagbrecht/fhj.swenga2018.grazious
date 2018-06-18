@@ -84,7 +84,10 @@
 
 	<bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
-		<property name="enableSpringELCompiler" value="true" />
+		<property name="enableSpringELCompiler" value="false" />
+		<property name="additionalDialects">
+			<set><bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" /></set>
+		</property>
 	</bean>
 	
 	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
@@ -92,15 +95,6 @@
   </bean>
   
 	<!-- ################################################################ -->
-
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="${db.url}" />
-		<property name="username" value="${db.username}" />
-		<property name="password" value="${db.password}" />
-		<property name="initialSize" value="2" />
-		<property name="maxTotal" value="5" />
-	</bean>
 
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"

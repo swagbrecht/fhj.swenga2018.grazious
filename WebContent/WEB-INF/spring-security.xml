@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+							http://www.springframework.org/schema/security 
+							http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<http>
+		<csrf disabled="true"/>
+		
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/fill" access="permitAll" />
+		<intercept-url pattern="/resources/**" access="permitAll" />
+
+		<intercept-url pattern="/user/**" access="hasRole('ADMIN')" />
+		<!-- intercept-url pattern="/**" access="hasRole('USER') or hasRole('ADMIN')" / -->
+		<intercept-url pattern="/**" access="authenticated" />
+		<!-- <intercept-url pattern="/delete" access="hasRole('ADMIN')" /> -->
+
+		<form-login login-page="/login" default-target-url='/' always-use-default-target='true' />
+		<logout logout-url="/logout" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="bcrypt" />
+			<jdbc-user-service data-source-ref="dataSource"
+		       users-by-username-query="
+		       	SELECT username, password, isEnabled AS enabled
+		        FROM user
+		        WHERE username=? AND isEnabled=1;"
+ 
+		       authorities-by-username-query="
+		       	SELECT u.username, ur.name AS role
+				FROM user u
+				INNER JOIN user_userRole u2r ON u.userId=u2r.UserModel_userId
+				INNER JOIN userRole ur ON u2r.userRoles_userRoleId=ur.userRoleId
+				WHERE u.username=?;"
+	        />
+		</authentication-provider>
+	</authentication-manager>
+ 
+</b:beans>
