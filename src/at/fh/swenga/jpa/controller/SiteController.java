@@ -89,6 +89,11 @@ public class SiteController {
 		
 		return "index";
 	}
+	
+	@RequestMapping("/test")
+	public String test(Model model) {
+		return "index";
+	}
 
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {

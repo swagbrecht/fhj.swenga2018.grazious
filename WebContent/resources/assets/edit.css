@@ -1,0 +1,25 @@
+.container.edit {
+	max-width: 600px;
+}
+
+textarea {
+	width: 100%;
+}
+
+.gallery-image {
+	text-align: center;
+}
+
+.gallery-image img {
+	max-height: 200px;
+	max-width: 200px;
+}
+
+.gallery-buttons {
+	text-align: center;
+	padding: 5px 0 20px;
+}
+
+.upload-file {
+	margin-bottom: 50px;
+}

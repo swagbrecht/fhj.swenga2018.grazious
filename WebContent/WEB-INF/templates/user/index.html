@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="~{includes/meta :: meta}" />
+	<title>Employee Manager</title>
+	<div th:replace="~{includes/styles :: styles}" />
+	<link rel="stylesheet" href="/grazious/resources/assets/profile.css" />
+</head>
+<body>
+	<div th:replace="~{includes/header :: header}" />
+	
+	<div class="container profile">
+	   <div class="card hovercard">
+	      <div class="card-background">
+	         <img class="card-bkimg" alt="" src="/grazious/resources/img/no-userpic.jpg">
+	      </div>
+	      <div class="useravatar">
+	         <img alt="" src="/grazious/resources/img/no-userpic.jpg" />
+	      </div>
+	      <div class="card-info"> 
+	         <span class="card-title">[[${user.firstName}]] [[${user.lastName}]]</span>
+	      </div>
+	      <div class="card-edit">
+	         <a th:href="@{'/user/update'}" class="btn btn-primary btn-xs">
+	         <i class="icon ion-md-create"></i> Bearbeiten
+	         </a>
+	      </div>
+	   </div>
+	   <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+	      <div class="btn-group" role="group">
+	         <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
+	            <i class="icon ion-ios-information-circle-outline"></i>
+	            <div class="hidden-xs">Allgemeines</div>
+	         </button>
+	      </div>
+	      <div class="btn-group" role="group">
+	         <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
+	            <i class="icon ion-ios-contact-outline"></i>
+	            <div class="hidden-xs">Aussehen</div>
+	         </button>
+	      </div>
+	      <div class="btn-group" role="group">
+	         <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab">
+	            <i class="icon ion-ios-happy-outline"></i>
+	            <div class="hidden-xs">Charakter</div>
+	         </button>
+	      </div>
+	      <div class="btn-group" role="group">
+	         <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab">
+	            <i class="icon ion-ios-book-outline"></i>
+	            <div class="hidden-xs">Über mich</div>
+	         </button>
+	      </div>
+	      <div class="btn-group" role="group">
+	         <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab">
+	            <i class="icon ion-ios-images-outline"></i>
+	            <div class="hidden-xs">Fotos</div>
+	         </button>
+	      </div>
+	   </div>
+	   <div class="well">
+	      <div class="tab-content">
+	         <div class="tab-pane fade in active" id="tab1">
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Benutzername
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.username}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Email-Adresse
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.email}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Geschlecht
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.gender.name}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Geburtsdatum
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+					  [[${#calendars.format(user.birthday, 'dd.MM.yyyy')}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Bezirk
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.region.name}]]
+	               </div>
+	            </div>
+	         </div>
+	         <div class="tab-pane fade in" id="tab2">
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Haarfarbe
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.hairColor}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Haarlänge
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.hairLength}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Augenfarbe
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.eyeColor}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Statur
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.bodyType}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Größe
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.height}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Tattoos
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.hasTattoos}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Piercing
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.hasPiercing}]]
+	               </div>
+	            </div>
+	         </div>
+	         <div class="tab-pane fade in" id="tab3">
+	            <div class="row">
+	               <div class="col-sm-6 col-sm-offset-3 text-center" th:each="character : ${user.personalCharacters}">
+	                  <b>[[${character.name}]]</b>
+	               </div>
+	            </div>
+	         </div>
+	         <div class="tab-pane fade in" id="tab4">
+	            <div class="row">
+	               <div class="col-sm-6 col-sm-offset-3">
+	               	  [[${user.about}]]
+	               </div>
+	            </div>
+	         </div>
+	         <div class="tab-pane fade in" id="tab5">
+	            <div class="grid">
+	               <div class="grid-item" th:each="photo : ${user.photos}">
+	                  <a th:href="@{/resources/img/profile/} + ${photo.filename}" data-lightbox="profile-gallery">
+	                  	<img th:src="@{/resources/img/profile/} + ${photo.filename}" alt="" />
+	                  </a>
+	               </div>
+	            </div>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+	
+	<div th:replace="~{includes/footer :: footer}" />
+	<div th:replace="~{includes/scripts :: scripts}" />
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	        $('.grid').masonry({
+	          itemSelector: '.grid-item',
+	          fitWidth: true
+	        });
+	
+	        lightbox.option({
+	            fadeDuration: 0,
+	            resizeDuration: 200,
+	            albumLabel: ''
+	        });
+	
+	        $(".btn-pref .btn").click(function () {
+	            $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+	            $(this).removeClass("btn-default").addClass("btn-primary");   
+	        });
+	    });
+	</script>
+</body>
+</html>

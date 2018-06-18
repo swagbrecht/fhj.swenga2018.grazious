@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="~{includes/meta :: meta}" />
+	<title>Employee Manager</title>
+	<div th:replace="~{includes/styles :: styles}" />
+	<link rel="stylesheet" href="/grazious/resources/assets/register.css" />
+</head>
+<body>
+	<div th:replace="~{includes/header :: header}" />
+	
+	<div class="container register">
+	   <div class="row main">
+	      <div class="panel-heading">
+	         <div class="panel-title text-center">
+	            <h3 class="title">Account Erstellen</h3>
+	            <hr />
+	         </div>
+	      </div>
+	      <div class="main-login main-center">
+	         <div class="col-sm-6 col-sm-offset-3 well">
+	            <form class="form-horizontal register-form" method="post" action="#">
+	               <div class="form-group">
+	                  <label for="username" class="cols-sm-2 control-label">Benutzername</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+	                        <input type="text" class="form-control" name="username" id="username"  placeholder="Dein Benutzername"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="firstName" class="cols-sm-2 control-label">Vorname</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+	                        <input type="text" class="form-control" name="firstName" id="firstName"  placeholder="Dein Vorname"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="name" class="cols-sm-2 control-label">Nachname</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+	                        <input type="text" class="form-control" name="name" id="name"  placeholder="Dein Nachname"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="email" class="cols-sm-2 control-label">Email-Adresse</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+	                        <input type="text" class="form-control" name="email" id="email"  placeholder="Deine Email-Adresse"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="password" class="cols-sm-2 control-label">Passwort</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+	                        <input type="password" class="form-control" name="password" id="password"  placeholder="Dein Passwort"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="confirm" class="cols-sm-2 control-label">Passwortbestätigung</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+	                        <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Bestätige dein Passwort"/>
+	                     </div>
+	                  </div>
+	               </div>
+	               <hr class="separator" />
+	               <div class="form-group">
+	                  <label for="gender" class="cols-sm-2 control-label">Geschlecht</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-venus-mars fa-lg" style="font-size:12px" aria-hidden="true"></i></span>
+	                        <select name="gender" id="gender" class="form-control">
+                        	   <option th:each="gender : ${genders}" th:value="${gender.genderId}" th:text="${gender.name}"></option>
+	                        </select>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="region" class="cols-sm-2 control-label">Bezirk</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
+	                        <select name="region" id="region" class="form-control">
+	                           <option th:each="region : ${regions}" th:value="${region.regionId}" th:text="${region.name}"></option>
+	                        </select>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <label for="premium" class="cols-sm-2 control-label">Premium-Account</label>
+	                  <div class="cols-sm-10">
+	                     <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-star fa-lg" style="font-size:12px" aria-hidden="true"></i></span>
+	                        <select name="premium" id="premium" class="form-control">
+	                           <option value="">Bitte wählen</option>
+	                           <option value="1">Ja</option>
+	                           <option value="0">Nein</option>
+	                        </select>
+	                     </div>
+	                  </div>
+	               </div>
+	               <div class="form-group">
+	                  <button type="button" class="btn btn-primary btn-block ogin-button">Register</button>
+	                  <a th:href="@{'/user/login'}" class="btn btn-default btn-block">Anmelden</a>
+	               </div>
+	            </form>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+	
+	<div th:replace="~{includes/footer :: footer}" />
+	<div th:replace="~{includes/scripts :: scripts}" />
+</body>
+</html>

@@ -1,11 +1,18 @@
 package at.fh.swenga.jpa.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import at.fh.swenga.jpa.dao.GenderRepository;
+import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
+import at.fh.swenga.jpa.model.GenderModel;
+import at.fh.swenga.jpa.model.RegionModel;
 import at.fh.swenga.jpa.model.UserModel;
 
 @Controller
@@ -15,12 +22,33 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	GenderRepository genderRepository;
+	
+	@Autowired
+	RegionRepository regionRepository;
+	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
-		List<UserModel> users = userRepository.findAll();
-		model.addAttribute("users", users);
 		
-		return "test";
+		Optional<UserModel> user = userRepository.findById(2);
+		model.addAttribute("user", user.get());
+		
+		return "user/index";
+	}
+	
+	@RequestMapping(value = { "/login" })
+	public String login(Model model) {
+		return "login";
+	}
+	
+	@RequestMapping(value = { "/register" })
+	public String register(Model model) {
+		List<GenderModel> genders = genderRepository.findAll();
+		List<RegionModel> regions = regionRepository.findAll();
+		model.addAttribute("genders", genders);
+		model.addAttribute("regions", regions);
+		return "register";
 	}
 	
 }

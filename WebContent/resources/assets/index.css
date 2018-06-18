@@ -1,0 +1,42 @@
+.container.welcome {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.welcome-nav {
+	margin-top: 100px;
+}
+
+.welcome-nav-item {
+	margin-bottom: 20px;
+	padding: 30px;
+	background-color: violet;
+	cursor: pointer;
+}
+
+.welcome-nav-item:first-child {
+	background-color: brown;
+}
+
+.welcome-nav-item:last-child {
+	background-color: green;
+}
+
+.welcome-nav-item .icon {
+	text-align: center;
+}
+
+.welcome-nav-item .icon i.fa {
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+.welcome-nav-item .title {
+	font-size: 20px;
+	text-align: center;
+}
+
+.welcome-nav-item .description {
+	font-size: 12px;
+	text-align: center;
+}

@@ -30,10 +30,10 @@ public class UserModel implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private RegionModel region;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<PhotoModel> photos;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<PersonalCharacterModel> personalCharacters;
 		
 	@Id

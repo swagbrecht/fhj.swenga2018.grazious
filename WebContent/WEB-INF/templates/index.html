@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
-<title>Employee Manager</title>
-<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+	<div th:replace="~{includes/meta :: meta}" />
+	<title>Employee Manager</title>
+	<div th:replace="~{includes/styles :: styles}" />
 </head>
 <body>
+	<div th:replace="~{includes/header :: header}" />
 	
 	Probably the data is filled.
 	
+	<div th:replace="~{includes/footer :: footer}" />
+	<div th:replace="~{includes/scripts :: scripts}" />
 </body>
 </html>

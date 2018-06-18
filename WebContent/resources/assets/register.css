@@ -1,0 +1,11 @@
+.container.register {
+	max-width: 600px;
+}
+
+.register-form {
+	padding: 0 15px;
+}
+
+.separator {
+	margin-top: 35px;
+}
