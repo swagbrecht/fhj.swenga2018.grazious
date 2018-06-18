@@ -20,18 +20,18 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="navbar-icon"><i class="fa fa-comments"></i><span class="sr-only"> Benachrichtigungen</span></a></li>
-        <li><a href="#" class="navbar-icon"><i class="fa fa-search"></i><span class="sr-only"> Suchen</span></a></li>
-        <li class="dropdown">
+      	<li sec:authorize="isAuthenticated()"><a href="#" class="navbar-icon"><i class="fa fa-comments"></i><span class="sr-only"> Benachrichtigungen</span></a></li>
+        <li sec:authorize="isAuthenticated()"><a href="#" class="navbar-icon"><i class="fa fa-search"></i><span class="sr-only"> Suchen</span></a></li>
+        <li class="dropdown" sec:authorize="isAuthenticated()">
           <a href="#" class="dropdown-toggle userpic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span>Max Mustermann</span>
+            <span>[[${user.firstName}]] [[${user.lastName}]]</span>
             <img src="/grazious/resources/img/no-userpic.jpg" />
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#"><i class="fa fa-user"></i> Profil ansehen</a></li>
-            <li><a href="#"><i class="fa fa-pencil"></i> Profil bearbeiten</a></li>
+            <li><a th:href="@{/user/(id=${user.userId})}"><i class="fa fa-user"></i> Profil ansehen</a></li>
+            <li><a th:href="@{/user/edit(id=${user.userId})}"><i class="fa fa-pencil"></i> Profil bearbeiten</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="fa fa-sign-out"></i> Abmelden</a></li>
+            <li><a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Abmelden</a></li>
           </ul>
         </li>
       </ul>

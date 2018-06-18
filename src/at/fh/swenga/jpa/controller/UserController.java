@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import at.fh.swenga.jpa.dao.GenderRepository;
-import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
 import at.fh.swenga.jpa.model.UserModel;
 
@@ -20,9 +19,9 @@ public class UserController {
 	UserRepository userRepository;
 	
 	@RequestMapping(value = { "/" })
-	public String index(Model model) {
+	public String index(@RequestParam(value = "id") Integer id, Model model) {
 		
-		Optional<UserModel> user = userRepository.findById(2);
+		Optional<UserModel> user = userRepository.findById(id);
 		model.addAttribute("user", user.get());
 		
 		return "user/index";
