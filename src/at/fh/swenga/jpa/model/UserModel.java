@@ -302,6 +302,19 @@ public class UserModel implements java.io.Serializable {
 		this.isPremium = isPremium;
 	}
 	
+	public Boolean hasPersonalCharacter(PersonalCharacterModel character) {
+		
+		for (PersonalCharacterModel userCharacter : personalCharacters)
+			if (userCharacter.getName().equals(character.getName())) {
+				System.out.println("HALLO" +userCharacter.getName());
+				return true;
+			}
+		
+		System.out.println("NOT HALLO" + character.getName());
+		
+		return false;
+	}
+	
 	public void addUserRole(UserRoleModel userRole) {
 		if (userRoles == null) 
 			userRoles = new HashSet<UserRoleModel>();
@@ -312,5 +325,37 @@ public class UserModel implements java.io.Serializable {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		password = passwordEncoder.encode(password);		
 	}
+
+	@Override
+	public String toString() {
+		return "UserModel [username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserModel other = (UserModel) obj;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		return true;
+	}
+	
+	
 
 }

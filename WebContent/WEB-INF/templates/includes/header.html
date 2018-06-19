@@ -20,7 +20,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-      	<li sec:authorize="isAuthenticated()"><a href="#" class="navbar-icon"><i class="fa fa-comments"></i><span class="sr-only"> Benachrichtigungen</span></a></li>
+      	<li sec:authorize="isAuthenticated()"><a th:href="@{/chat/}" class="navbar-icon"><i class="fa fa-comments"></i><span class="sr-only"> Benachrichtigungen</span></a></li>
         <li sec:authorize="isAuthenticated()"><a href="#" class="navbar-icon"><i class="fa fa-search"></i><span class="sr-only"> Suchen</span></a></li>
         <li class="dropdown" sec:authorize="isAuthenticated()">
           <a href="#" class="dropdown-toggle userpic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

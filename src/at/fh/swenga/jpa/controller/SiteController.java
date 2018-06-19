@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import at.fh.swenga.jpa.dao.GenderRepository;
+import at.fh.swenga.jpa.dao.MessageRepository;
 import at.fh.swenga.jpa.dao.PersonalCharacterRepository;
 import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
 import at.fh.swenga.jpa.dao.UserRoleRepository;
 import at.fh.swenga.jpa.model.GenderModel;
+import at.fh.swenga.jpa.model.MessageModel;
 import at.fh.swenga.jpa.model.PersonalCharacterModel;
 import at.fh.swenga.jpa.model.PhotoModel;
 import at.fh.swenga.jpa.model.RegionModel;
@@ -49,6 +51,9 @@ public class SiteController {
 
 	@Autowired
 	PersonalCharacterRepository personalCharacterRepository;
+	
+	@Autowired
+	MessageRepository messageRepository;
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
@@ -97,9 +102,9 @@ public class SiteController {
 		set1PersonalCharacter.add(personalCharacterModel1);
 		set1PersonalCharacter.add(personalCharacterModel2);
 		
-		Set<PersonalCharacterModel> set2PersonalCharacter = new HashSet<>();
-		set2PersonalCharacter.add(personalCharacterModel1);
-		set2PersonalCharacter.add(personalCharacterModel3);
+		Set<PersonalCharacterModel> set3PersonalCharacter = new HashSet<>();
+		set3PersonalCharacter.add(personalCharacterModel1);
+		set3PersonalCharacter.add(personalCharacterModel3);
 		
 		// genders
 		GenderModel genderMaleModel = new GenderModel("m", "Männlich");
@@ -115,11 +120,11 @@ public class SiteController {
 		set1PhotoModel.add(new PhotoModel("2.jpg"));
 		set1PhotoModel.add(new PhotoModel("3.jpg"));
 		
-		Set<PhotoModel> set2PhotoModel = new HashSet<>();
-		set2PhotoModel.add(new PhotoModel("4.jpg"));
-		set2PhotoModel.add(new PhotoModel("5.jpg"));
-		set2PhotoModel.add(new PhotoModel("6.jpg"));
-		set2PhotoModel.add(new PhotoModel("7.jpg"));
+		Set<PhotoModel> set3PhotoModel = new HashSet<>();
+		set3PhotoModel.add(new PhotoModel("4.jpg"));
+		set3PhotoModel.add(new PhotoModel("5.jpg"));
+		set3PhotoModel.add(new PhotoModel("6.jpg"));
+		set3PhotoModel.add(new PhotoModel("7.jpg"));
 		
 		// user roles
 		UserRoleModel userRoleAdmin = new UserRoleModel("ROLE_ADMIN");
@@ -136,22 +141,39 @@ public class SiteController {
 		Calendar birthday2 = Calendar.getInstance();
 		birthday2.set(1950, 10, 20);
 		
-		UserModel userModel1 = new UserModel(genderMaleModel, regionPuntigamModel, "mustermax", "pa$$w0rd", "Max", "Mustermann", "max@mustermann.at", birthday1, "This is a short text about my life.", "Braun", "Kurz", "Braun", "Schlank", 180, false, true, true, false);
-		userModel1.encryptPassword();
-		userModel1.setPhotos(set1PhotoModel);
-		userModel1.setPersonalCharacters(set1PersonalCharacter);
-		userModel1.addUserRole(userRoleAdmin);
-		userModel1.addUserRole(userRoleUser);
-		userModel1.addUserRole(userRolePremium);
+		UserModel userMax = new UserModel(genderMaleModel, regionPuntigamModel, "mustermax", "pa$$w0rd", "Max", "Mustermann", "max@mustermann.at", birthday1, "This is a short text about my life.", "Braun", "Kurz", "Braun", "Schlank", 180, false, true, true, false);
+		userMax.encryptPassword();
+		userMax.setPhotos(set1PhotoModel);
+		userMax.setPersonalCharacters(set1PersonalCharacter);
+		userMax.addUserRole(userRoleAdmin);
+		userMax.addUserRole(userRoleUser);
+		userMax.addUserRole(userRolePremium);
 		
-		UserModel userModel2 = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I don't know what to write here.", "Hell", "Lang", "Grün", "Schlank", 165, true, true, true, true);
-		userModel2.encryptPassword();
-		userModel2.setPhotos(set2PhotoModel);
-		userModel2.setPersonalCharacters(set2PersonalCharacter);
-		userModel2.addUserRole(userRoleUser);
-	
-		userRepository.save(userModel1);
-		userRepository.save(userModel2);
+		UserModel userJohn = new UserModel(genderMaleModel, regionAndritzModel, "johndoe", "pa$$w0rd", "Jahn", "Doe", "john@doe.com", birthday2, "I don't know what to write here.", "Braun", "Kurz", "Braun", "Schlank", 190, true, false, true, true);
+		userJohn.encryptPassword();
+		userJohn.addUserRole(userRoleUser);
+		
+		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Grün", "Schlank", 165, true, true, true, true);
+		userJane.encryptPassword();
+		userJane.setPhotos(set3PhotoModel);
+		userJane.setPersonalCharacters(set3PersonalCharacter);
+		userJane.addUserRole(userRoleUser);
+		
+		userRepository.save(userMax);
+		userRepository.save(userJohn);
+		userRepository.save(userJane);
+		
+		// messages
+		MessageModel messageMaxToJane1 = new MessageModel(userMax, userJane, "Hallo Jane!");
+		MessageModel messageMaxToJane2 = new MessageModel(userMax, userJane, "Wie geht es dir?");
+		MessageModel messageJaneToMax = new MessageModel(userJane, userMax, "Hi! Es geht gut. Dir?");
+		MessageModel messageJaneToJohn = new MessageModel(userJane, userJohn, "Hey! Schreib bitte dem Max nicht!");
+		MessageModel messageJoneToJane = new MessageModel(userJohn, userJane, "Okay!");
+		messageRepository.save(messageMaxToJane1);
+		messageRepository.save(messageMaxToJane2);
+		messageRepository.save(messageJaneToMax);
+		messageRepository.save(messageJaneToJohn);
+		messageRepository.save(messageJoneToJane);
 		
 		return "index";
 	}

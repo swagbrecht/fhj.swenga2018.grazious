@@ -1,6 +1,6 @@
 package at.fh.swenga.jpa.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "message")
@@ -33,8 +35,9 @@ public class MessageModel implements java.io.Serializable {
 	@Column(name = "text", nullable = false)
 	private String text;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "timestamp", nullable = false)
-	private Date timestamp;
+	private Calendar timestamp;
 	
 	public MessageModel() {
 		super();
@@ -45,10 +48,10 @@ public class MessageModel implements java.io.Serializable {
 		this.sender = sender;
 		this.recipient = recipient;
 		this.text = text;
-		this.timestamp = new Date();
+		this.timestamp = Calendar.getInstance();
 	}
 
-	public MessageModel(UserModel sender, UserModel recipient, Integer messageId, String text, Date timestamp) {
+	public MessageModel(UserModel sender, UserModel recipient, Integer messageId, String text, Calendar timestamp) {
 		super();
 		this.sender = sender;
 		this.recipient = recipient;
@@ -89,12 +92,17 @@ public class MessageModel implements java.io.Serializable {
 		this.text = text;
 	}
 
-	public Date getTimestamp() {
+	public Calendar getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(Calendar timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	@Override
+	public String toString() {
+		return "MessageModel [sender=" + sender + ", recipient=" + recipient + ", text=" + text + "]";
 	}
 	
 }

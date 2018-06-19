@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="~{includes/meta :: meta}" />
+	<title>Employee Manager</title>
+	<div th:replace="~{includes/styles :: styles}" />
+	<link rel="stylesheet" th:href="@{/resources/assets/chat.css}" />
+</head>
+<body>
+	<div th:replace="~{includes/header :: header}" />
+	
+	<div class="main_section">
+	   <div class="container">
+	      <div class="chat_container">
+	         <div class="col-sm-3 chat_sidebar">
+	            <div class="row">
+	               <div id="custom-search-input">
+	                  <div class="input-group col-md-12"><b>Konversationspartner</b></div>
+	               </div>
+	               <div class="member_list">
+	                  <ul class="list-unstyled">
+	                     <li class="left clearfix left" th:each="conversation : ${conversations}">
+	                     	<a th:href="@{/chat/with(id=${conversation.partner.userId})}">
+		                        <span class="chat-img pull-left">
+		                        <img th:src="@{/resources/img/no-userpic.jpg}" alt="User Avatar" class="img-circle" />
+		                        </span>
+		                        <div class="chat-body clearfix">
+		                           <div class="header_sec">
+		                              <strong class="primary-font">[[${conversation.partner.firstName}]] [[${conversation.partner.lastName}]]</strong>
+		                           </div>
+		                           <div class="contact_sec">
+		                              <strong class="primary-font">[[${conversation.lastMessage}]]</strong>
+		                           </div>
+		                        </div>
+	                        </a>
+	                     </li>
+	                  </ul>
+	               </div>
+	            </div>
+	         </div>
+	         <div class="col-sm-9 message_section">
+	            <div class="row">
+	               <div class="new_message_head">
+	                  <div><img th:src="@{/resources/img/no-userpic.jpg}" class="chat-userpic" alt="" /> Kein Konversationspartner</div>
+	               </div>
+	               <div class="chat_area" style="text-align:center;margin-top:50px;">
+	               		<b>Keine Nachrichten</b><br/>
+	               		Bitte wählen Sie die Konversation aus
+	               </div>
+	            </div>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+	
+	<div th:replace="~{includes/footer :: footer}" />
+	<div th:replace="~{includes/scripts :: scripts}" />
+</body>
+</html>
