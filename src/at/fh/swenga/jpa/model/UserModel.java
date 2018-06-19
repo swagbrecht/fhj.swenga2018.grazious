@@ -41,7 +41,13 @@ public class UserModel implements java.io.Serializable {
 	
 	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	private Set<UserRoleModel> userRoles;
-		
+	
+//	@OneToMany(mappedBy="sender", fetch=FetchType.EAGER)
+//	private Set<MessageModel> sentMessages;
+	
+//	@OneToMany(mappedBy="recipient", fetch=FetchType.EAGER)
+//	private Set<MessageModel> receivedMessages;
+	
 	@Id
 	@Column(name = "userId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

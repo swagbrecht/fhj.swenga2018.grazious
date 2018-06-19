@@ -59,11 +59,13 @@
 	                  </ul>
 	               </div>
 	               <div class="message_write">
-	                  <textarea class="form-control" placeholder="Schreib etwas ..."></textarea>
+	               	  <form method="post" th:action="@{/chat/send(id=${partner.userId})}">
+	                  <textarea class="form-control" name="text" placeholder="Schreib etwas ..."></textarea>
 	                  <div class="clearfix"></div>
 	                  <div class="chat_bottom">
-	                     <a href="#" class="pull-right btn btn-primary"><i class="fa fa-paper-plane"></i> Senden</a>
+	                     <button type="submit" class="pull-right btn btn-primary"><i class="fa fa-paper-plane"></i> Senden</button>
 	                  </div>
+	                  </form>
 	               </div>
 	            </div>
 	         </div>

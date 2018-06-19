@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "message")
@@ -20,10 +21,10 @@ public class MessageModel implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 8098173157518993615L;
 	
-	@ManyToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private UserModel sender;
 
-	@ManyToOne (cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private UserModel recipient;
 	
 	@Id
@@ -32,6 +33,7 @@ public class MessageModel implements java.io.Serializable {
 	private Integer messageId;
 	
 	@Lob
+	@Size(min = 1)
 	@Column(name = "text", nullable = false)
 	private String text;
 
@@ -51,11 +53,10 @@ public class MessageModel implements java.io.Serializable {
 		this.timestamp = Calendar.getInstance();
 	}
 
-	public MessageModel(UserModel sender, UserModel recipient, Integer messageId, String text, Calendar timestamp) {
+	public MessageModel(UserModel sender, UserModel recipient, String text, Calendar timestamp) {
 		super();
 		this.sender = sender;
 		this.recipient = recipient;
-		this.messageId = messageId;
 		this.text = text;
 		this.timestamp = timestamp;
 	}
