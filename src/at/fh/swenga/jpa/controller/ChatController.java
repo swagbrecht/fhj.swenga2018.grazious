@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,6 +55,7 @@ public class ChatController {
 		
 		List<Conversation> conversations = conversations(user);
 		List<MessageModel> messages = messages(user, partner);
+		messages.sort(Comparator.comparing(MessageModel::getTimestamp));
 		
 		model.addAttribute("user", user);
 		model.addAttribute("partner", partner);
@@ -128,6 +130,11 @@ public class ChatController {
 				return true;
 		
 		return false;
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleAllException(Exception ex) {
+		return "error";
 	}
 	
 }

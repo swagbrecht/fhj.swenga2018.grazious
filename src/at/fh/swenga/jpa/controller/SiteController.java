@@ -55,12 +55,12 @@ public class SiteController {
 	@Autowired
 	MessageRepository messageRepository;
 	
-	@RequestMapping(value = { "/" })
+	@RequestMapping(value = { "/", "index" })
 	public String index(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserModel user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
-		return "index";
+		return "user/index";
 	}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
@@ -68,7 +68,12 @@ public class SiteController {
 		return "login";
 	}
 	
-	@RequestMapping(value = { "/register" })
+	@RequestMapping(value = { "/test" }, method = RequestMethod.GET)
+	public String test() {
+		return "test";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
 		List<GenderModel> genders = genderRepository.findAll();
 		List<RegionModel> regions = regionRepository.findAll();

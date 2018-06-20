@@ -67,7 +67,7 @@
 
 	<!-- ################################################################ -->
 
-	<!--  <mvc:annotation-driven/> -->
+	<mvc:annotation-driven/>
 
 	<!-- if no Controller can handle a request, ask Servlet Container, if he 
 		can handle it, otherwise return 404 -->

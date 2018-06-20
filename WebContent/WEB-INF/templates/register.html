@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<div th:replace="~{includes/meta :: meta}" />
-	<title>Employee Manager</title>
 	<div th:replace="~{includes/styles :: styles}" />
 	<link rel="stylesheet" href="/grazious/resources/assets/register.css" />
 </head>
@@ -111,7 +110,7 @@
 	                  </div>
 	               </div>
 	               <div class="form-group">
-	                  <button type="button" class="btn btn-primary btn-block ogin-button">Register</button>
+	                  <button type="submit" class="btn btn-primary btn-block login-button">Register</button>
 	                  <a th:href="@{'/user/login'}" class="btn btn-default btn-block">Anmelden</a>
 	               </div>
 	            </form>
