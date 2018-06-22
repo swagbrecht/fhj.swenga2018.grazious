@@ -1,8 +1,8 @@
 package at.fh.swenga.jpa.model;
 
 import java.util.Calendar;
+import java.util.Comparator;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,6 +59,28 @@ public class MessageModel implements java.io.Serializable {
 		this.recipient = recipient;
 		this.text = text;
 		this.timestamp = timestamp;
+	}
+	
+	public static Comparator<MessageModel> idComparator() {
+		return new Comparator<MessageModel>() {
+
+			@Override
+			public int compare(MessageModel o1, MessageModel o2) {
+				return o1.getMessageId().compareTo(o2.getMessageId());
+			}
+			
+		};
+	}
+	
+	public static Comparator<MessageModel> idComparatorReverted() {
+		return new Comparator<MessageModel>() {
+
+			@Override
+			public int compare(MessageModel o1, MessageModel o2) {
+				return o2.getMessageId().compareTo(o1.getMessageId());
+			}
+			
+		};
 	}
 
 	public UserModel getSender() {

@@ -75,5 +75,10 @@
 	
 	<div th:replace="~{includes/footer :: footer}" />
 	<div th:replace="~{includes/scripts :: scripts}" />
+	<script>
+		$(document).ready(function() {
+			$('.chat_area').scrollTop($('.chat_area')[0].scrollHeight);
+		});
+	</script>
 </body>
 </html>

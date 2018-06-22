@@ -80,22 +80,14 @@ public class ChatController {
 	private List<MessageModel> messages(UserModel user1, UserModel user2) {
 		List<MessageModel> messages = messageRepository.findAllBySenderAndRecipient(user1, user2);
 		messages.addAll(messageRepository.findAllBySenderAndRecipient(user2, user1));
+		Collections.sort(messages, MessageModel.idComparator());
 		return messages;
 	}
-	
+
 	private List<Conversation> conversations(UserModel user) {
 		List<MessageModel> partners = messageRepository.findAllBySender(user);		
 		partners.addAll(messageRepository.findAllByRecipient(user));
-		Collections.sort(partners, new Comparator<MessageModel>() {
-
-			@Override
-			public int compare(MessageModel o1, MessageModel o2) {
-				if (o1.getTimestamp().before(o2.getTimestamp())) return -1;
-				if (o1.getTimestamp().before(o2.getTimestamp())) return 1;
-				return 0;
-			}
-			
-		});
+		Collections.sort(partners, MessageModel.idComparatorReverted());
 
 		List<Conversation> conversations = conversationsForUser(partners, user);
 		conversations = uniqueConversations(conversations);
