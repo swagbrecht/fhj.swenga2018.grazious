@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -42,12 +45,6 @@ public class UserModel implements java.io.Serializable {
 	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	private Set<UserRoleModel> userRoles;
 	
-//	@OneToMany(mappedBy="sender", fetch=FetchType.EAGER)
-//	private Set<MessageModel> sentMessages;
-	
-//	@OneToMany(mappedBy="recipient", fetch=FetchType.EAGER)
-//	private Set<MessageModel> receivedMessages;
-	
 	@Id
 	@Column(name = "userId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,12 +56,16 @@ public class UserModel implements java.io.Serializable {
 	@Column(name = "password", nullable = false)
 	private String password;
 	
+	@NotEmpty
 	@Column(name = "firstName", nullable = false)
 	private String firstName;
 	
+	@NotEmpty
 	@Column(name = "lastName", nullable = false)
 	private String lastName;
 	
+	@Email
+	@NotEmpty
 	@Column(name = "email", nullable = false)
 	private String email;
 	
@@ -91,9 +92,11 @@ public class UserModel implements java.io.Serializable {
 	@Column(name = "height")
 	private Integer height;
 	
+	@NotNull
 	@Column(name = "hasPiercing")
 	private Boolean hasPiercing;
 
+	@NotNull
 	@Column(name = "hasTattoos")
 	private Boolean hasTattoos;
 	

@@ -21,7 +21,7 @@
 	         <span class="card-title">[[${user.firstName}]] [[${user.lastName}]]</span>
 	      </div>
 	      <div class="card-edit">
-	         <a th:href="@{/user/update(id=${user.userId})}" class="btn btn-primary btn-xs">
+	         <a th:href="@{'/user/update/' + ${user.userId}}" class="btn btn-primary btn-xs">
 	         <i class="icon ion-md-create"></i> Bearbeiten
 	         </a>
 	      </div>
@@ -99,6 +99,14 @@
 	               </div>
 	               <div class="profile-property-description col-sm-6">
 	                  [[${user.region.name}]]
+	               </div>
+	            </div>
+	            <div class="row">
+	               <div class="profile-property-title col-sm-6">
+	                  Premium-Benutzer
+	               </div>
+	               <div class="profile-property-description col-sm-6">
+	                  [[${user.isPremium} ? 'Ja' : 'Nein']]
 	               </div>
 	            </div>
 	         </div>
