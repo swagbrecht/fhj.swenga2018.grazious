@@ -1,11 +1,13 @@
 package at.fh.swenga.jpa.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "photo")
@@ -20,14 +22,18 @@ public class PhotoModel implements java.io.Serializable {
 	
 	@Column(name = "filename", nullable = false)
 	private String filename;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private UserModel user;
 
 	public PhotoModel() {
 		super();
 	}
 
-	public PhotoModel(String filename) {
+	public PhotoModel(String filename, UserModel user) {
 		super();
 		this.filename = filename;
+		this.user = user;
 	}
 
 	public Integer getPhotoId() {
@@ -44,6 +50,14 @@ public class PhotoModel implements java.io.Serializable {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public UserModel getUser() {
+		return user;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
 	}
 	
 }

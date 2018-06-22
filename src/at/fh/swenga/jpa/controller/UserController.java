@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PersonalCharacterRepository;
+import at.fh.swenga.jpa.dao.PhotoRepository;
 import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
 import at.fh.swenga.jpa.model.PersonalCharacterModel;
+import at.fh.swenga.jpa.model.PhotoModel;
 import at.fh.swenga.jpa.model.RegionModel;
 import at.fh.swenga.jpa.model.UserModel;
 
@@ -33,6 +35,9 @@ public class UserController {
 	
 	@Autowired
 	RegionRepository regionRepository;
+	
+	@Autowired
+	PhotoRepository photoRepository;
 	
 	@RequestMapping(value = { "/{id}" })
 	public String index(@PathVariable(value = "id") Integer id, Model model) {
@@ -107,6 +112,15 @@ public class UserController {
 		
 		userRepository.save(user);
 
+		return "redirect:/user/" + user.getUserId();
+	}
+	
+	@RequestMapping(value = { "/uploadPhotos/{id}" }, method = RequestMethod.POST)
+	public String upload(@PathVariable(value = "id") Integer id, @Valid PhotoModel photoModels, Model model) {
+		UserModel user = userRepository.findById(id).get();
+		
+		
+		
 		return "redirect:/user/" + user.getUserId();
 	}
 	

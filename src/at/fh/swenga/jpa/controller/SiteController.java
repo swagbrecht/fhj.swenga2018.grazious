@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import at.fh.swenga.jpa.dao.GenderRepository;
 import at.fh.swenga.jpa.dao.MessageRepository;
 import at.fh.swenga.jpa.dao.PersonalCharacterRepository;
+import at.fh.swenga.jpa.dao.PhotoRepository;
 import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
 import at.fh.swenga.jpa.dao.UserRoleRepository;
@@ -54,6 +55,9 @@ public class SiteController {
 	
 	@Autowired
 	MessageRepository messageRepository;
+	
+	@Autowired
+	PhotoRepository photoRepository;
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
@@ -92,7 +96,7 @@ public class SiteController {
 		
 		// personal characters
 		PersonalCharacterModel personalCharacterModel1 = new PersonalCharacterModel("Nett");
-		PersonalCharacterModel personalCharacterModel2 = new PersonalCharacterModel("Ängstlich");
+		PersonalCharacterModel personalCharacterModel2 = new PersonalCharacterModel("ï¿½ngstlich");
 		PersonalCharacterModel personalCharacterModel3 = new PersonalCharacterModel("Liebevoll");
 		personalCharacterRepository.save(personalCharacterModel1);
 		personalCharacterRepository.save(personalCharacterModel2);
@@ -107,24 +111,12 @@ public class SiteController {
 		set3PersonalCharacter.add(personalCharacterModel3);
 		
 		// genders
-		GenderModel genderMaleModel = new GenderModel("m", "Männlich");
+		GenderModel genderMaleModel = new GenderModel("m", "Mï¿½nnlich");
 		GenderModel genderFemaleModel = new GenderModel("f", "Weiblich");
 		
 		// regions
 		RegionModel regionAndritzModel = new RegionModel("Andritz");
 		RegionModel regionPuntigamModel = new RegionModel("Puntigam");
-		
-		// photos
-		Set<PhotoModel> set1PhotoModel = new HashSet<>();
-		set1PhotoModel.add(new PhotoModel("1.jpg"));
-		set1PhotoModel.add(new PhotoModel("2.jpg"));
-		set1PhotoModel.add(new PhotoModel("3.jpg"));
-		
-		Set<PhotoModel> set3PhotoModel = new HashSet<>();
-		set3PhotoModel.add(new PhotoModel("4.jpg"));
-		set3PhotoModel.add(new PhotoModel("5.jpg"));
-		set3PhotoModel.add(new PhotoModel("6.jpg"));
-		set3PhotoModel.add(new PhotoModel("7.jpg"));
 		
 		// user roles
 		UserRoleModel userRoleAdmin = new UserRoleModel("ROLE_ADMIN");
@@ -143,7 +135,6 @@ public class SiteController {
 		
 		UserModel userMax = new UserModel(genderMaleModel, regionPuntigamModel, "mustermax", "pa$$w0rd", "Max", "Mustermann", "max@mustermann.at", birthday1, "This is a short text about my life.", "Braun", "Kurz", "Braun", "Schlank", 180, false, true, true, false);
 		userMax.encryptPassword();
-		userMax.setPhotos(set1PhotoModel);
 		userMax.setPersonalCharacters(set1PersonalCharacter);
 		userMax.addUserRole(userRoleAdmin);
 		userMax.addUserRole(userRoleUser);
@@ -153,15 +144,30 @@ public class SiteController {
 		userJohn.encryptPassword();
 		userJohn.addUserRole(userRoleUser);
 		
-		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Grün", "Schlank", 165, true, true, true, true);
+		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Grï¿½n", "Schlank", 165, true, true, true, true);
 		userJane.encryptPassword();
-		userJane.setPhotos(set3PhotoModel);
 		userJane.setPersonalCharacters(set3PersonalCharacter);
 		userJane.addUserRole(userRoleUser);
 		
 		userRepository.save(userMax);
 		userRepository.save(userJohn);
 		userRepository.save(userJane);
+		
+		// photos
+		PhotoModel photo1 = new PhotoModel("1.jpg", userMax);
+		PhotoModel photo2 = new PhotoModel("2.jpg", userMax);
+		PhotoModel photo3 = new PhotoModel("3.jpg", userMax);
+		PhotoModel photo4 = new PhotoModel("4.jpg", userJane);
+		PhotoModel photo5 = new PhotoModel("5.jpg", userJane);
+		PhotoModel photo6 = new PhotoModel("6.jpg", userJane);
+		PhotoModel photo7 = new PhotoModel("7.jpg", userJane);
+		photoRepository.save(photo1);
+		photoRepository.save(photo2);
+		photoRepository.save(photo3);
+		photoRepository.save(photo4);
+		photoRepository.save(photo5);
+		photoRepository.save(photo6);
+		photoRepository.save(photo7);
 		
 		// messages
 		MessageModel messageMaxToJane1 = new MessageModel(userMax, userJane, "Hallo Jane!");

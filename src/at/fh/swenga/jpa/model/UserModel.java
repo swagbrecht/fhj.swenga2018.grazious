@@ -36,13 +36,10 @@ public class UserModel implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private RegionModel region;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private Set<PhotoModel> photos;
-	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<PersonalCharacterModel> personalCharacters;
 	
-	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private Set<UserRoleModel> userRoles;
 	
 	@Id
@@ -149,14 +146,6 @@ public class UserModel implements java.io.Serializable {
 
 	public void setRegion(RegionModel region) {
 		this.region = region;
-	}
-
-	public Set<PhotoModel> getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(Set<PhotoModel> photos) {
-		this.photos = photos;
 	}
 
 	public Set<PersonalCharacterModel> getPersonalCharacters() {
@@ -364,7 +353,5 @@ public class UserModel implements java.io.Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }
