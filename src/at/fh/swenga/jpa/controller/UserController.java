@@ -18,7 +18,6 @@ import at.fh.swenga.jpa.dao.PersonalCharacterRepository;
 import at.fh.swenga.jpa.dao.RegionRepository;
 import at.fh.swenga.jpa.dao.UserRepository;
 import at.fh.swenga.jpa.model.PersonalCharacterModel;
-import at.fh.swenga.jpa.model.PersonalCharacters;
 import at.fh.swenga.jpa.model.RegionModel;
 import at.fh.swenga.jpa.model.UserModel;
 
@@ -94,6 +93,17 @@ public class UserController {
 		user.setBodyType(userModel.getBodyType());
 		user.setHasPiercing(hasPiercing);
 		user.setHasTattoos(hasTattoos);
+		
+		userRepository.save(user);
+
+		return "redirect:/user/" + user.getUserId();
+	}
+	
+	@RequestMapping(value = { "/saveAbout/{id}" }, method = RequestMethod.POST)
+	public String updateAbout(@PathVariable(value = "id") Integer id, @Valid UserModel userModel, BindingResult bindingResult, Model model) {
+		UserModel user = userRepository.findById(id).get();
+				
+		user.setAbout(userModel.getAbout());
 		
 		userRepository.save(user);
 
