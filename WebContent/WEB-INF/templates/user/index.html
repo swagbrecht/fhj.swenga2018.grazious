@@ -184,7 +184,7 @@
 	         </div>
 	         <div class="tab-pane fade in" id="tab5">
 	            <div class="grid">
-	               <div class="grid-item" th:each="photo : ${user.photos}">
+	               <div class="grid-item" th:each="photo : ${photos}">
 	                  <a th:href="@{/resources/img/profile/} + ${photo.filename}" data-lightbox="profile-gallery">
 	                  	<img th:src="@{/resources/img/profile/} + ${photo.filename}" alt="" />
 	                  </a>

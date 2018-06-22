@@ -321,7 +321,7 @@
 	                  </div>
 	               </div>
 	               <div class="col-md-8 col-md-offset-2">
-	                  <div class="col-md-4" th:each="photo : ${user.photos}">
+	                  <div class="col-md-4" th:each="photo : ${photos}">
 	                     <div class="gallery-image">
 	                        <img th:src="@{/resources/img/profile/} + ${photo.filename}" alt="" />
 	                     </div>

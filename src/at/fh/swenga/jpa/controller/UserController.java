@@ -41,21 +41,28 @@ public class UserController {
 	
 	@RequestMapping(value = { "/{id}" })
 	public String index(@PathVariable(value = "id") Integer id, Model model) {
-		Optional<UserModel> user = userRepository.findById(id);
-		model.addAttribute("user", user.get());
+		UserModel user = userRepository.findById(id).get();
+		
+		List<PhotoModel> photos = photoRepository.findAllByUser(user);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("photos", photos);
 		
 		return "user/index";
 	}
 	
 	@RequestMapping(value = { "/update/{id}" })
 	public String update(@PathVariable(value = "id") Integer id, Model model) {
+		UserModel user = userRepository.findById(id).get();
 		
-		Optional<UserModel> user = userRepository.findById(id);
 		List<PersonalCharacterModel> characters = characterRepository.findAll();
 		List<RegionModel> regions = regionRepository.findAll();
-		model.addAttribute("user", user.get());
+		List<PhotoModel> photos = photoRepository.findAllByUser(user);
+		
+		model.addAttribute("user", user);
 		model.addAttribute("characters", characters);
 		model.addAttribute("regions", regions);
+		model.addAttribute("photos", photos);
 		
 		return "user/update";
 	}
