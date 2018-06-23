@@ -306,34 +306,36 @@
 	         </div>
 	         <div class="tab-pane fade in" id="tab5">
 	            <div class="row">
-	               <div class="col-md-8 col-md-offset-2 text-center upload-file">
-	                  <div class="fileupload fileupload-new" data-provides="fileupload">
-	                     <span class="btn btn-default btn-file">
-	                     <span class="fileupload-new">
-	                     <i class="icon ion-md-cloud-upload"></i>
-	                     Neues Foto hochladen
-	                     </span>
-	                     <span class="fileupload-exists">Anderes Foto auswählen</span>         
-	                     <input type="file" />
-	                     </span>
-	                     <span class="fileupload-preview"></span>
-	                     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">�</a>
-	                  </div>
-	               </div>
-	               <div class="col-md-8 col-md-offset-2">
-	                  <div class="col-md-4" th:each="photo : ${photos}">
-	                     <div class="gallery-image">
-	                        <img th:src="@{/resources/img/profile/} + ${photo.filename}" alt="" />
-	                     </div>
-	                     <div class="gallery-buttons">
-	                        <a th:href="@{/user/deletePhoto(id=${photo.photoId})}" class="btn btn-danger btn-xs">
-		                        <i class="icon ion-ios-trash-outline"></i>
-		                        Löschen
-	                        </a>
-	                     </div>
-	                  </div>
-	               </div>
-	            </div>
+					<div class="col-md-8 col-md-offset-2 text-center upload-file">
+						<form enctype="multipart/form-data" method="post" th:action="@{'/user/uploadPhotos/' + ${user.userId}}">
+						   <div class="fileupload fileupload-new" data-provides="fileupload">
+						      <span class="btn btn-default btn-file">
+						      <span class="fileupload-new">
+						      <i class="icon ion-md-cloud-upload"></i>
+						      Neues Foto hochladen
+						      </span>
+						      <span class="fileupload-exists">Anderes Foto auswählen</span>         
+						      <input type="file" name="file" />
+						      </span>
+						      <span class="fileupload-preview"></span>
+						      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+						   </div>
+						   </div>
+						   <div class="col-md-8 col-md-offset-2">
+						      <div class="col-md-4" th:each="photo : ${photos}">
+						         <div class="gallery-image">
+						            <img th:src="@{/resources/img/photos/} + ${photo.filename}" alt="" />
+						         </div>
+						         <div class="gallery-buttons">
+						            <a th:href="@{/user/deletePhoto(id=${photo.photoId})}" class="btn btn-danger btn-xs">
+						            <i class="icon ion-ios-trash-outline"></i>
+						            Löschen
+						            </a>
+						         </div>
+						      </div>
+						   </div>
+						</form>
+					</div>
 	         </div>
 	      </div>
 	   </div>
@@ -348,6 +350,10 @@
 	            $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
 	            $(this).removeClass("btn-default").addClass("btn-primary");   
 	        });
+	    	
+    		$("input:file").change(function() {
+				$(this).parents('form').submit();
+    	     });
 	    });
 	</script>
 </body>

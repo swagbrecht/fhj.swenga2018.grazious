@@ -1,10 +1,15 @@
 package at.fh.swenga.jpa.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import at.fh.swenga.jpa.dao.PersonalCharacterRepository;
 import at.fh.swenga.jpa.dao.PhotoRepository;
@@ -38,6 +44,9 @@ public class UserController {
 	
 	@Autowired
 	PhotoRepository photoRepository;
+	
+	@Autowired
+	ServletContext servletContext;
 	
 	@RequestMapping(value = { "/{id}" })
 	public String index(@PathVariable(value = "id") Integer id, Model model) {
@@ -123,10 +132,22 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = { "/uploadPhotos/{id}" }, method = RequestMethod.POST)
-	public String upload(@PathVariable(value = "id") Integer id, @Valid PhotoModel photoModels, Model model) {
+	public String upload(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
+		
 		UserModel user = userRepository.findById(id).get();
 		
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+		String filename = UUID.randomUUID().toString() + "." + extension;
+		File imageFile = new File(servletContext.getRealPath("/resources/img/photos"), filename);
 		
+		try {
+			file.transferTo(imageFile);
+			photoModel.setFilename(filename);
+			photoModel.setUser(user);
+			photoRepository.save(photoModel);
+		} catch (IOException e) {
+			e.printStackTrace(); 
+		}
 		
 		return "redirect:/user/" + user.getUserId();
 	}

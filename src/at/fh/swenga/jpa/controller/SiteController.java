@@ -160,14 +160,12 @@ public class SiteController {
 		PhotoModel photo4 = new PhotoModel("4.jpg", userJane);
 		PhotoModel photo5 = new PhotoModel("5.jpg", userJane);
 		PhotoModel photo6 = new PhotoModel("6.jpg", userJane);
-		PhotoModel photo7 = new PhotoModel("7.jpg", userJane);
 		photoRepository.save(photo1);
 		photoRepository.save(photo2);
 		photoRepository.save(photo3);
 		photoRepository.save(photo4);
 		photoRepository.save(photo5);
 		photoRepository.save(photo6);
-		photoRepository.save(photo7);
 		
 		// messages
 		MessageModel messageMaxToJane1 = new MessageModel(userMax, userJane, "Hallo Jane!");

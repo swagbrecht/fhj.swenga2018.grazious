@@ -23,7 +23,7 @@ public class PhotoModel implements java.io.Serializable {
 	@Column(name = "filename", nullable = false)
 	private String filename;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private UserModel user;
 
 	public PhotoModel() {
