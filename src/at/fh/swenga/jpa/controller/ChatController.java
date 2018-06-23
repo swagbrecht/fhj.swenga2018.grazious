@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,8 +45,8 @@ public class ChatController {
 		return "chat/index";
 	} 
 	
-	@RequestMapping(value = { "/with" })
-	public String with(@RequestParam(value = "id") Integer id, Model model) {
+	@RequestMapping(value = { "/with/{id}" })
+	public String with(@PathVariable(value = "id") Integer id, Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserModel user = userRepository.findByUsername(username);
 		
@@ -62,8 +63,8 @@ public class ChatController {
 		return "chat/with";
 	} 
 	
-	@RequestMapping(value = { "/send" })
-	public String send(@RequestParam(value = "id") Integer id, @Valid MessageModel message, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = { "/send/{id}" })
+	public String send(@PathVariable(value = "id") Integer id, @Valid MessageModel message, BindingResult bindingResult, Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserModel user = userRepository.findByUsername(username);
 		UserModel partner = userRepository.findById(id).get();
@@ -73,7 +74,7 @@ public class ChatController {
 		message.setTimestamp(Calendar.getInstance());
 		
 		messageRepository.save(message);
-		return "forward:/chat/with?id" + id;
+		return "redirect:/chat/with/" + id;
 	}
 	
 	private List<MessageModel> messages(UserModel user1, UserModel user2) {
