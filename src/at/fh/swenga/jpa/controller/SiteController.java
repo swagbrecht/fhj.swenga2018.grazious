@@ -80,6 +80,14 @@ public class SiteController {
 		return "about";
 	}
 	
+	@RequestMapping(value = { "/impr" }, method = RequestMethod.GET)
+	public String impr(Model model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserModel user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
+		return "impr";
+	}
+	
 	@RequestMapping(value = { "/register" })
 	public String register(Model model) {
 		List<GenderModel> genders = genderRepository.findAll();
