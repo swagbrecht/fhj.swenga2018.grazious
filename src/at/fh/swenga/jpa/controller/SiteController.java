@@ -133,7 +133,23 @@ public class SiteController {
 		// regions
 		RegionModel regionAndritzModel = new RegionModel("Andritz");
 		RegionModel regionPuntigamModel = new RegionModel("Puntigam");
-		
+		RegionModel regionInnereStadtModel = new RegionModel("Innere Stadt");
+		RegionModel regionLeonhardModel = new RegionModel("St. Leonhard");
+		RegionModel regionGeidorfModel = new RegionModel("Geidorf");
+		RegionModel regionLendModel = new RegionModel("Lend");
+		RegionModel regionGriesModel = new RegionModel("Gries");
+		RegionModel regionJakominiModel = new RegionModel("Jakomini");
+		RegionModel regionLiebenauModel = new RegionModel("Liebenau");
+		RegionModel regionPeterModel = new RegionModel("St. Peter");
+		RegionModel regionWaltendorfModel = new RegionModel("Waltendorf");
+		RegionModel regionRiesModel = new RegionModel("Ries");
+		RegionModel regionMariatrostModel = new RegionModel("Mariatrost");
+		RegionModel regionGoestingModel = new RegionModel("Gösting");
+		RegionModel regionEggenbergModel = new RegionModel("Eggenberg");
+		RegionModel regionWetzelsdorfModel = new RegionModel("Wetzelsdorf");
+		RegionModel regionStrassgangModel = new RegionModel("Straßgang");
+
+
 		// user roles
 		UserRoleModel userRoleAdmin = new UserRoleModel("ROLE_ADMIN");
 		UserRoleModel userRoleUser = new UserRoleModel("ROLE_USER");
