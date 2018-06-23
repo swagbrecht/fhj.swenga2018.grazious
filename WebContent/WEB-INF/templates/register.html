@@ -4,7 +4,7 @@
 	<div th:replace="~{includes/meta :: meta}" />
 	<title>Employee Manager</title>
 	<div th:replace="~{includes/styles :: styles}" />
-	<link rel="stylesheet" href="/grazious/resources/assets/register.css" />
+	<link rel="stylesheet" th:href="@{/resources/assets/register.css}" />
 </head>
 <body>
 	<div th:replace="~{includes/header :: header}" />

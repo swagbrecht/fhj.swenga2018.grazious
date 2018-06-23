@@ -10,16 +10,12 @@
 .welcome-nav-item {
 	margin-bottom: 20px;
 	padding: 30px;
-	background-color: violet;
 	cursor: pointer;
 }
 
-.welcome-nav-item:first-child {
-	background-color: brown;
-}
-
-.welcome-nav-item:last-child {
-	background-color: green;
+.welcome-nav-item a:link, .welcome-nav-item a:visited {
+	text-decoration: none;
+	color: #000;
 }
 
 .welcome-nav-item .icon {

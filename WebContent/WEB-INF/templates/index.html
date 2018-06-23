@@ -4,11 +4,40 @@
 	<div th:replace="~{includes/meta :: meta}" />
 	<title>Employee Manager</title>
 	<div th:replace="~{includes/styles :: styles}" />
+	<link rel="stylesheet" th:href="@{/resources/assets/index.css}" />
 </head>
 <body>
 	<div th:replace="~{includes/header :: header}" />
 	
-	Probably the data is filled.
+	<div class="container welcome">
+	
+		<h1>Willkommen, [[${user.firstName}]] [[${user.lastName}]]!</h1>
+	
+		<div class="row welcome-nav">
+			<div class="col-sm-4 welcome-nav-item">
+				<a th:href="@{/search/}">
+					<div class="icon"><i class="fa fa-search"></i></div>
+					<div class="title">Suche</div>
+					<div class="description">Such dir einen Partner und starte die Konversation</div>
+				</a>
+			</div>
+			<div class="col-sm-4 welcome-nav-item">
+				<a th:href="@{'/user/' + ${user.userId}}">
+					<div class="icon"><i class="fa fa-user"></i></div>
+					<div class="title">Mein Profil</div>
+					<div class="description">Schau was du in deinem Profil drinnen hast ;)</div>
+				</a>
+			</div>
+			<div class="col-sm-4 welcome-nav-item">
+				<a th:href="@{/user/update/}">
+					<div class="icon"><i class="fa fa-pencil"></i></div>
+					<div class="title">Bearbeiten</div>
+					<div class="description">Bearbeite dein Profil und füge Daten hinzu.</div>
+				</a>
+			</div>
+		</div>
+	
+	</div>
 	
 	<div th:replace="~{includes/footer :: footer}" />
 	<div th:replace="~{includes/scripts :: scripts}" />

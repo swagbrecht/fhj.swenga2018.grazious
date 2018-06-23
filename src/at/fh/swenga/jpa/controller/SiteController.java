@@ -144,10 +144,10 @@ public class SiteController {
 		RegionModel regionWaltendorfModel = new RegionModel("Waltendorf");
 		RegionModel regionRiesModel = new RegionModel("Ries");
 		RegionModel regionMariatrostModel = new RegionModel("Mariatrost");
-		RegionModel regionGoestingModel = new RegionModel("Gösting");
+		RegionModel regionGoestingModel = new RegionModel("GÃ¶sting");
 		RegionModel regionEggenbergModel = new RegionModel("Eggenberg");
 		RegionModel regionWetzelsdorfModel = new RegionModel("Wetzelsdorf");
-		RegionModel regionStrassgangModel = new RegionModel("Straßgang");
+		RegionModel regionStrassgangModel = new RegionModel("StraÃŸgang");
 
 
 		// user roles
