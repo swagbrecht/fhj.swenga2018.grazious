@@ -13,6 +13,7 @@
 		
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/fill" access="permitAll" />
+		<intercept-url pattern="/about" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
 
 		<!--   intercept-url pattern="/user/**" access="hasRole('ADMIN')" / -->
