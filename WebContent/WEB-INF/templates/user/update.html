@@ -22,7 +22,7 @@
 	         <span class="card-title">[[${user.firstName}]] [[${user.lastName}]]</span>
 	      </div>
 	      <div class="card-edit">
-	        <form th:action="@{'/user/uploadProfilePhoto/' + ${user.userId}}" enctype="multipart/form-data" method="post">
+	        <form th:action="@{/user/uploadProfilePhoto/}" enctype="multipart/form-data" method="post">
 		  		<div class="fileupload fileupload-new" data-provides="fileupload">
 			      <span class="btn btn-default btn-file btn-xs">
 			      	<span class="fileupload-new">
@@ -75,7 +75,7 @@
 	         <div class="tab-pane fade in active" id="tab1">
 	            <div class="row">
 	               <div class="col-md-6 col-md-offset-3">
-	                  <form class="form-horizontal" method="post" th:action="@{'/user/save/' + ${user.userId}}">
+	                  <form class="form-horizontal" method="post" th:action="@{/user/save/}">
 	                     <fieldset>
 	                        <div class="form-group">
 	                           <label class="col-md-4 control-label" for="username">Benutzername</label>  
@@ -174,7 +174,7 @@
 	         <div class="tab-pane fade in" id="tab2">
 	            <div class="row">
 	               <div class="col-md-6 col-md-offset-3">
-	                  <form class="form-horizontal" method="post" th:action="@{'/user/saveLook/' + ${user.userId}}">
+	                  <form class="form-horizontal" method="post" th:action="@{/user/saveLook/}">
 	                     <fieldset>
 	                        <div class="form-group">
 	                           <label class="col-md-4 control-label" for="hairColor">Haarfarbe</label>
@@ -303,7 +303,7 @@
 	         <div class="tab-pane fade in" id="tab4">
 	            <div class="row">
 					<div class="col-sm-8 col-sm-offset-2">
-						<form class="form-horizontal" method="post" th:action="@{'/user/saveAbout/' + ${user.userId}}">
+						<form class="form-horizontal" method="post" th:action="@{/user/saveAbout/}">
 		                  <div class="form-group">
 		                     <textarea name="about" id="about" rows="20">[[${user.about}]]</textarea>
 		                  </div>
@@ -318,7 +318,7 @@
 	         <div class="tab-pane fade in" id="tab5">
 	            <div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center upload-file">
-						<form enctype="multipart/form-data" method="post" th:action="@{'/user/uploadPhoto/' + ${user.userId}}">
+						<form enctype="multipart/form-data" method="post" th:action="@{/user/uploadPhoto/}">
 						   <div class="fileupload fileupload-new" data-provides="fileupload">
 						      <span class="btn btn-default btn-file">
 						      <span class="fileupload-new">

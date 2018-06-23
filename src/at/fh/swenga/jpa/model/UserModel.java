@@ -19,7 +19,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -88,11 +87,9 @@ public class UserModel implements java.io.Serializable {
 	@Column(name = "height")
 	private Integer height;
 	
-	@NotNull
 	@Column(name = "hasPiercing")
 	private Boolean hasPiercing;
 
-	@NotNull
 	@Column(name = "hasTattoos")
 	private Boolean hasTattoos;
 	
@@ -316,14 +313,9 @@ public class UserModel implements java.io.Serializable {
 	}
 	
 	public Boolean hasPersonalCharacter(PersonalCharacterModel character) {
-		
 		for (PersonalCharacterModel userCharacter : personalCharacters)
-			if (userCharacter.getName().equals(character.getName())) {
-				System.out.println("HALLO" +userCharacter.getName());
+			if (userCharacter.getName().equals(character.getName()))
 				return true;
-			}
-		
-		System.out.println("NOT HALLO" + character.getName());
 		
 		return false;
 	}

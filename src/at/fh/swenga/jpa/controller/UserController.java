@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,6 +48,13 @@ public class UserController {
 	@Autowired
 	ServletContext servletContext;
 	
+	@RequestMapping(value = { "/" })
+	public String index(Model model) {
+		UserModel user = getCurrentUser();
+		
+		return "redirect:/user/" + user.getUserId();
+	}
+	
 	@RequestMapping(value = { "/{id}" })
 	public String index(@PathVariable(value = "id") Integer id, Model model) {
 		UserModel user = userRepository.findById(id).get();
@@ -59,9 +67,9 @@ public class UserController {
 		return "user/index";
 	}
 	
-	@RequestMapping(value = { "/update/{id}" })
-	public String update(@PathVariable(value = "id") Integer id, Model model) {
-		UserModel user = userRepository.findById(id).get();
+	@RequestMapping(value = { "/update" })
+	public String update(Model model) {
+		UserModel user = getCurrentUser();
 		
 		List<PersonalCharacterModel> characters = characterRepository.findAll();
 		List<RegionModel> regions = regionRepository.findAll();
@@ -75,13 +83,13 @@ public class UserController {
 		return "user/update";
 	}
 	
-	@RequestMapping(value = { "/save/{id}" }, method = RequestMethod.POST)
-	public String update(@PathVariable(value = "id") Integer id, @Valid UserModel userModel, BindingResult bindingResult, Model model) {
-		UserModel user = userRepository.findById(id).get();
+	@RequestMapping(value = { "/save" }, method = RequestMethod.POST)
+	public String update(@Valid UserModel userModel, BindingResult bindingResult, Model model) {
+		UserModel user = getCurrentUser();
 		
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("bindingResult", bindingResult);
-			return "forward:/user/update/" + id;
+			return "forward:/user/update";
 		}
 		
 		user.setFirstName(userModel.getFirstName());
@@ -94,15 +102,14 @@ public class UserController {
 		return "redirect:/user/" + user.getUserId();
 	}
 	
-	@RequestMapping(value = { "/saveLook/{id}" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/saveLook" }, method = RequestMethod.POST)
 	public String update(
-			@PathVariable(value = "id") Integer id,
 			@RequestParam(value = "hasPiercing") Boolean hasPiercing,
 			@RequestParam(value = "hasTattoos") Boolean hasTattoos,
 			@Valid UserModel userModel,
 			BindingResult bindingResult, 
 			Model model) {
-		UserModel user = userRepository.findById(id).get();
+		UserModel user = getCurrentUser();
 				
 		if (!bindingResult.hasFieldErrors("height"))
 			user.setHeight(userModel.getHeight());
@@ -119,9 +126,9 @@ public class UserController {
 		return "redirect:/user/" + user.getUserId();
 	}
 	
-	@RequestMapping(value = { "/saveAbout/{id}" }, method = RequestMethod.POST)
-	public String updateAbout(@PathVariable(value = "id") Integer id, @Valid UserModel userModel, BindingResult bindingResult, Model model) {
-		UserModel user = userRepository.findById(id).get();
+	@RequestMapping(value = { "/saveAbout" }, method = RequestMethod.POST)
+	public String updateAbout(@Valid UserModel userModel, BindingResult bindingResult, Model model) {
+		UserModel user = getCurrentUser();
 				
 		user.setAbout(userModel.getAbout());
 		
@@ -130,10 +137,10 @@ public class UserController {
 		return "redirect:/user/" + user.getUserId();
 	}
 	
-	@RequestMapping(value = { "/uploadPhoto/{id}" }, method = RequestMethod.POST)
-	public String uploadPhoto(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
+	@RequestMapping(value = { "/uploadPhoto" }, method = RequestMethod.POST)
+	public String uploadPhoto(@RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
 		
-		UserModel user = userRepository.findById(id).get();
+		UserModel user = getCurrentUser();
 		
 		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 		String filename = UUID.randomUUID().toString() + "." + extension;
@@ -151,10 +158,9 @@ public class UserController {
 		return "redirect:/user/" + user.getUserId();
 	}
 	
-	@RequestMapping(value = { "/uploadProfilePhoto/{id}" }, method = RequestMethod.POST)
-	public String uploadProfilePhoto(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
-		
-		UserModel user = userRepository.findById(id).get();
+	@RequestMapping(value = { "/uploadProfilePhoto" }, method = RequestMethod.POST)
+	public String uploadProfilePhoto(@RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {		
+		UserModel user = getCurrentUser();
 		
 		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 		String filename = UUID.randomUUID().toString() + "." + extension;
@@ -169,6 +175,13 @@ public class UserController {
 		}
 		
 		return "redirect:/user/" + user.getUserId();
+	}
+	
+	private UserModel getCurrentUser() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserModel user = userRepository.findByUsername(username);
+		
+		return user;
 	}
 	
 }

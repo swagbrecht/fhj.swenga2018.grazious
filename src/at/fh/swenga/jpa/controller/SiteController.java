@@ -96,7 +96,7 @@ public class SiteController {
 		
 		// personal characters
 		PersonalCharacterModel personalCharacterModel1 = new PersonalCharacterModel("Nett");
-		PersonalCharacterModel personalCharacterModel2 = new PersonalCharacterModel("�ngstlich");
+		PersonalCharacterModel personalCharacterModel2 = new PersonalCharacterModel("Ängstlich");
 		PersonalCharacterModel personalCharacterModel3 = new PersonalCharacterModel("Liebevoll");
 		personalCharacterRepository.save(personalCharacterModel1);
 		personalCharacterRepository.save(personalCharacterModel2);
@@ -111,7 +111,7 @@ public class SiteController {
 		set3PersonalCharacter.add(personalCharacterModel3);
 		
 		// genders
-		GenderModel genderMaleModel = new GenderModel("m", "M�nnlich");
+		GenderModel genderMaleModel = new GenderModel("m", "Männlich");
 		GenderModel genderFemaleModel = new GenderModel("f", "Weiblich");
 		
 		// regions
@@ -140,11 +140,11 @@ public class SiteController {
 		userMax.addUserRole(userRoleUser);
 		userMax.addUserRole(userRolePremium);
 		
-		UserModel userJohn = new UserModel(genderMaleModel, regionAndritzModel, "johndoe", "pa$$w0rd", "Jahn", "Doe", "john@doe.com", birthday2, "I don't know what to write here.", "Braun", "Kurz", "Braun", "Schlank", 190, true, false, true, true, null);
+		UserModel userJohn = new UserModel(genderMaleModel, regionAndritzModel, "johndoe", "pa$$w0rd", "John", "Doe", "john@doe.com", birthday2, "I don't know what to write here.", "Braun", "Kurz", "Braun", "Schlank", 190, true, false, true, true, null);
 		userJohn.encryptPassword();
 		userJohn.addUserRole(userRoleUser);
 		
-		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Gr�n", "Schlank", 165, true, true, true, true, null);
+		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Grün", "Schlank", 165, true, true, true, true, null);
 		userJane.encryptPassword();
 		userJane.setPersonalCharacters(set3PersonalCharacter);
 		userJane.addUserRole(userRoleUser);
