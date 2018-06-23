@@ -133,18 +133,18 @@ public class SiteController {
 		Calendar birthday2 = Calendar.getInstance();
 		birthday2.set(1950, 10, 20);
 		
-		UserModel userMax = new UserModel(genderMaleModel, regionPuntigamModel, "mustermax", "pa$$w0rd", "Max", "Mustermann", "max@mustermann.at", birthday1, "This is a short text about my life.", "Braun", "Kurz", "Braun", "Schlank", 180, false, true, true, false);
+		UserModel userMax = new UserModel(genderMaleModel, regionPuntigamModel, "mustermax", "pa$$w0rd", "Max", "Mustermann", "max@mustermann.at", birthday1, "This is a short text about my life.", "Braun", "Kurz", "Braun", "Schlank", 180, false, true, true, false, null);
 		userMax.encryptPassword();
 		userMax.setPersonalCharacters(set1PersonalCharacter);
 		userMax.addUserRole(userRoleAdmin);
 		userMax.addUserRole(userRoleUser);
 		userMax.addUserRole(userRolePremium);
 		
-		UserModel userJohn = new UserModel(genderMaleModel, regionAndritzModel, "johndoe", "pa$$w0rd", "Jahn", "Doe", "john@doe.com", birthday2, "I don't know what to write here.", "Braun", "Kurz", "Braun", "Schlank", 190, true, false, true, true);
+		UserModel userJohn = new UserModel(genderMaleModel, regionAndritzModel, "johndoe", "pa$$w0rd", "Jahn", "Doe", "john@doe.com", birthday2, "I don't know what to write here.", "Braun", "Kurz", "Braun", "Schlank", 190, true, false, true, true, null);
 		userJohn.encryptPassword();
 		userJohn.addUserRole(userRoleUser);
 		
-		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Gr�n", "Schlank", 165, true, true, true, true);
+		UserModel userJane = new UserModel(genderFemaleModel, regionAndritzModel, "janedoe", "pa$$w0rd", "Jane", "Doe", "jane@doe.com", birthday2, "I also don't know what to write here.", "Hell", "Lang", "Gr�n", "Schlank", 165, true, true, true, true, null);
 		userJane.encryptPassword();
 		userJane.setPersonalCharacters(set3PersonalCharacter);
 		userJane.addUserRole(userRoleUser);

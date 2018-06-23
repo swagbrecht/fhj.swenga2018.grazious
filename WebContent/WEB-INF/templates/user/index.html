@@ -12,10 +12,10 @@
 	<div class="container profile">
 	   <div class="card hovercard">
 	      <div class="card-background">
-	         <img class="card-bkimg" alt="" src="/grazious/resources/img/no-userpic.jpg">
+	         <img class="card-bkimg" alt="" th:src="@{${user.getProfilePhotoPath()}}">
 	      </div>
 	      <div class="useravatar">
-	         <img alt="" src="/grazious/resources/img/no-userpic.jpg" />
+	         <img alt="" th:src="@{${user.getProfilePhotoPath()}}" />
 	      </div>
 	      <div class="card-info"> 
 	         <span class="card-title">[[${user.firstName}]] [[${user.lastName}]]</span>

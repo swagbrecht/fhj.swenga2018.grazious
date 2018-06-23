@@ -101,6 +101,9 @@ public class UserModel implements java.io.Serializable {
 	
 	@Column(name = "isPremium", nullable = false)
 	private Boolean isPremium;
+	
+	@Column(name = "filename")
+	private String filename;
 
 	public UserModel() {
 		super();
@@ -109,7 +112,7 @@ public class UserModel implements java.io.Serializable {
 	public UserModel(GenderModel gender, RegionModel region, String username,
 			String password, String firstName, String lastName, String email, Calendar birthday, String about,
 			String hairColor, String hairLength, String eyeColor, String bodyType, Integer height, Boolean hasPiercing,
-			Boolean hasTattoos, Boolean isEnabled, Boolean isPremium) {
+			Boolean hasTattoos, Boolean isEnabled, Boolean isPremium, String filename) {
 		super();
 		this.gender = gender;
 		this.region = region;
@@ -129,6 +132,7 @@ public class UserModel implements java.io.Serializable {
 		this.hasTattoos = hasTattoos;
 		this.isEnabled = isEnabled;
 		this.isPremium = isPremium;
+		this.filename = filename;
 	}
 
 	public GenderModel getGender() {
@@ -297,6 +301,18 @@ public class UserModel implements java.io.Serializable {
 
 	public void setIsPremium(Boolean isPremium) {
 		this.isPremium = isPremium;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+	
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	
+	public String getProfilePhotoPath() {
+		return "/resources/img/" + (filename == null ? "no-userpic.jpg" : "profile/" + filename);
 	}
 	
 	public Boolean hasPersonalCharacter(PersonalCharacterModel character) {

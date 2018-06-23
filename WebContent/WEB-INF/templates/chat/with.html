@@ -22,7 +22,7 @@
 	                     <li class="left clearfix left" th:each="conversation : ${conversations}">
 	                     	<a th:href="@{/chat/with(id=${conversation.partner.userId})}">
 		                        <span class="chat-img pull-left">
-		                        <img th:src="@{/resources/img/no-userpic.jpg}" alt="User Avatar" class="img-circle" />
+		                        <img th:src="@{${conversation.partner.getProfilePhotoPath()}}" alt="User Avatar" class="img-circle" />
 		                        </span>
 		                        <div class="chat-body clearfix">
 		                           <div class="header_sec">
@@ -41,13 +41,13 @@
 	         <div class="col-sm-9 message_section">
 	            <div class="row">
 	               <div class="new_message_head">
-	                  <div><img th:src="@{/resources/img/no-userpic.jpg}" class="chat-userpic" alt="" /> [[${partner.firstName}]] [[${partner.lastName}]]</div>
+	                  <div><img th:src="@{${partner.getProfilePhotoPath()}}" class="chat-userpic" alt="" /> [[${partner.firstName}]] [[${partner.lastName}]]</div>
 	               </div>
 	               <div class="chat_area">
 	                  <ul class="list-unstyled">
 	                     <li class="left clearfix" th:each="message : ${messages}">
 	                        <span class="chat-img1" th:classappend="${message.sender.userId == user.userId} ? 'pull-right' : 'pull-left'">
-	                        	<img th:src="@{/resources/img/no-userpic.jpg}" alt="User Avatar" class="img-circle" />
+	                        	<img th:src="@{${message.sender.getProfilePhotoPath()}}" alt="User Avatar" class="img-circle" />
 	                        </span>
 	                        <div class="chat-body1 clearfix" th:classappend="${message.sender.userId == user.userId} ? 'text-right' : ''">
 	                           <p>

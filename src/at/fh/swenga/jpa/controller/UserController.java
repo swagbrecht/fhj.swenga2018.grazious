@@ -130,8 +130,8 @@ public class UserController {
 		return "redirect:/user/" + user.getUserId();
 	}
 	
-	@RequestMapping(value = { "/uploadPhotos/{id}" }, method = RequestMethod.POST)
-	public String upload(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
+	@RequestMapping(value = { "/uploadPhoto/{id}" }, method = RequestMethod.POST)
+	public String uploadPhoto(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
 		
 		UserModel user = userRepository.findById(id).get();
 		
@@ -144,6 +144,26 @@ public class UserController {
 			photoModel.setFilename(filename);
 			photoModel.setUser(user);
 			photoRepository.save(photoModel);
+		} catch (IOException e) {
+			e.printStackTrace(); 
+		}
+		
+		return "redirect:/user/" + user.getUserId();
+	}
+	
+	@RequestMapping(value = { "/uploadProfilePhoto/{id}" }, method = RequestMethod.POST)
+	public String uploadProfilePhoto(@PathVariable(value = "id") Integer id, @RequestParam("file") MultipartFile file, @Valid PhotoModel photoModel, Model model) {
+		
+		UserModel user = userRepository.findById(id).get();
+		
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+		String filename = UUID.randomUUID().toString() + "." + extension;
+		File imageFile = new File(servletContext.getRealPath("/resources/img/profile"), filename);
+		
+		try {
+			file.transferTo(imageFile);
+			user.setFilename(filename);
+			userRepository.save(user);
 		} catch (IOException e) {
 			e.printStackTrace(); 
 		}

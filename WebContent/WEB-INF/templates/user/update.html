@@ -13,18 +13,29 @@
 	<div class="container profile">
 	   <div class="card hovercard">
 	      <div class="card-background">
-	         <img class="card-bkimg" alt="" th:src="@{/resources/img/no-userpic.jpg}">
+	         <img class="card-bkimg" alt="" th:src="@{${user.getProfilePhotoPath()}}">
 	      </div>
 	      <div class="useravatar">
-	         <img alt="" th:src="@{/resources/img/no-userpic.jpg}" />
+	         <img alt="" th:src="@{${user.getProfilePhotoPath()}}" />
 	      </div>
 	      <div class="card-info"> 
 	         <span class="card-title">[[${user.firstName}]] [[${user.lastName}]]</span>
 	      </div>
 	      <div class="card-edit">
-	         <a href="edit.php" class="btn btn-default btn-xs">
-	         <i class="icon ion-ios-camera-outline"></i> Profilfoto ändern
-	         </a>
+	        <form th:action="@{'/user/uploadProfilePhoto/' + ${user.userId}}" enctype="multipart/form-data" method="post">
+		  		<div class="fileupload fileupload-new" data-provides="fileupload">
+			      <span class="btn btn-default btn-file btn-xs">
+			      	<span class="fileupload-new">
+			      		<i class="icon ion-ios-camera-outline"></i>
+			      		Profilfoto ändern
+			      	</span>
+			     	 <span class="fileupload-exists">Anderes Foto auswählen</span>         
+			      	<input type="file" name="file" />
+	      		  </span>
+			      <span class="fileupload-preview"></span>
+			      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+			   </div>
+		     </form>
 	      </div>
 	   </div>
 	   <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -307,7 +318,7 @@
 	         <div class="tab-pane fade in" id="tab5">
 	            <div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center upload-file">
-						<form enctype="multipart/form-data" method="post" th:action="@{'/user/uploadPhotos/' + ${user.userId}}">
+						<form enctype="multipart/form-data" method="post" th:action="@{'/user/uploadPhoto/' + ${user.userId}}">
 						   <div class="fileupload fileupload-new" data-provides="fileupload">
 						      <span class="btn btn-default btn-file">
 						      <span class="fileupload-new">

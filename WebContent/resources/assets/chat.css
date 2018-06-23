@@ -1,7 +1,9 @@
 .chat-userpic {
   height: 50px;
+  width: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 #custom-search-input {
@@ -59,6 +61,7 @@
 }
 
 .chat-img img {
+  object-fit: cover;
   height: 34px;
   width: 34px;
 }
@@ -135,6 +138,7 @@
 .chat_area li .chat-img1 img {
   height: 40px;
   width: 40px;
+  object-fit: cover;
 }
 
 .chat_area .chat-body1 {

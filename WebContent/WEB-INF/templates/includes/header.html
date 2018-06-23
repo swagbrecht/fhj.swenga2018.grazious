@@ -25,7 +25,7 @@
         <li class="dropdown" sec:authorize="isAuthenticated()">
           <a href="#" class="dropdown-toggle userpic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span>[[${user.firstName}]] [[${user.lastName}]]</span>
-            <img src="/grazious/resources/img/no-userpic.jpg" />
+            <img th:src="@{${user.getProfilePhotoPath()}}" />
           </a>
           <ul class="dropdown-menu">
             <li><a th:href="@{'/user/' + ${user.userId}}"><i class="fa fa-user"></i> Profil ansehen</a></li>
