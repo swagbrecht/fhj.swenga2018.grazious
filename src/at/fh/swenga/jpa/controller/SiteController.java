@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,9 +16,11 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.GenderRepository;
 import at.fh.swenga.jpa.dao.MessageRepository;
@@ -72,6 +75,71 @@ public class SiteController {
 		return "login";
 	}
 	
+	@RequestMapping(value = { "/register" }, method = RequestMethod.GET)
+	public String register(Model model) {
+		List<GenderModel> genders = genderRepository.findAll();
+		List<RegionModel> regions = regionRepository.findAll();
+		
+		UserModel userModel = new UserModel();
+		
+		model.addAttribute("genders", genders);
+		model.addAttribute("regions", regions);
+		model.addAttribute("userModel", userModel);
+		
+		return "register";
+	}
+	
+	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
+	public String register(@RequestParam(value = "confirmPassword") String confirmPassword, @Valid UserModel userModel, BindingResult bindingResult, Model model) {
+		
+		String passwordError = "";
+		String passwordConfirmError = "";
+		
+		if (userModel.getPassword().isEmpty())
+			passwordError = "darf nicht leer sein";
+		
+		if (!userModel.getPassword().equals(confirmPassword))
+			passwordConfirmError = "muss mit Passwort übereinstimmen";
+		
+		System.out.println(userModel.getPassword());
+		System.out.println(confirmPassword);
+		
+		userModel.setAbout("");
+		userModel.setBirthday(Calendar.getInstance());
+		userModel.setIsEnabled(true);
+		userModel.setIsPremium(false);
+		
+		if (!bindingResult.hasErrors() && passwordError.isEmpty() && passwordConfirmError.isEmpty()) {
+			userModel.encryptPassword();
+			
+			UserRoleModel userRole = userRoleRepository.findByName("ROLE_USER");
+			Set<UserRoleModel> userRoleSet = new HashSet<>();
+			userRoleSet.add(userRole);
+			userModel.setUserRoles(userRoleSet);
+			
+			userRepository.save(userModel);
+			
+			return "redirect:/login";
+		}
+		
+		for (FieldError e : bindingResult.getFieldErrors())
+			System.out.println(e.getField() + ": " + e.getDefaultMessage());
+		
+		System.out.println(bindingResult.hasErrors());
+		
+		List<GenderModel> genders = genderRepository.findAll();
+		List<RegionModel> regions = regionRepository.findAll();
+		
+		model.addAttribute("genders", genders);
+		model.addAttribute("regions", regions);
+		model.addAttribute("bindingResult", bindingResult);
+		model.addAttribute("userModel", userModel);
+		model.addAttribute("passwordError", passwordError);
+		model.addAttribute("passwordConfirmError", passwordConfirmError);
+		
+		return "register";
+	}
+	
 	@RequestMapping(value = { "/about" }, method = RequestMethod.GET)
 	public String about(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -87,16 +155,7 @@ public class SiteController {
         model.addAttribute("user", user);
 		return "impr";
 	}
-	
-	@RequestMapping(value = { "/register" })
-	public String register(Model model) {
-		List<GenderModel> genders = genderRepository.findAll();
-		List<RegionModel> regions = regionRepository.findAll();
-		model.addAttribute("genders", genders);
-		model.addAttribute("regions", regions);
-		return "register";
-	}
-	
+
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -214,9 +273,9 @@ public class SiteController {
 		return "index";
 	}
 
-	@ExceptionHandler(Exception.class)
-	public String handleAllException(Exception ex) {
-		return "error";
-	}
+//	@ExceptionHandler(Exception.class)
+//	public String handleAllException(Exception ex) {
+//		return "error";
+//	}
 	
 }

@@ -19,14 +19,15 @@
 	      </div>
 	      <div class="main-login main-center">
 	         <div class="col-sm-6 col-sm-offset-3 well">
-	            <form class="form-horizontal register-form" method="post" action="#">
+	            <form class="form-horizontal register-form" method="post" th:action="@{/register}">
 	               <div class="form-group">
 	                  <label for="username" class="cols-sm-2 control-label">Benutzername</label>
 	                  <div class="cols-sm-10">
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-	                        <input type="text" class="form-control" name="username" id="username"  placeholder="Dein Benutzername"/>
+	                        <input type="text" class="form-control" name="username" id="username" placeholder="Dein Benutzername" th:value="${userModel.username}" />
 	                     </div>
+	                     <div class="help-block">[[${bindingResult != null && bindingResult.hasFieldErrors("username") ? bindingResult.getFieldError("username").getDefaultMessage() : ""}]]</div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
@@ -34,17 +35,19 @@
 	                  <div class="cols-sm-10">
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-	                        <input type="text" class="form-control" name="firstName" id="firstName"  placeholder="Dein Vorname"/>
+	                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Dein Vorname" th:value="${userModel.firstName}"/>
 	                     </div>
+	                     <div class="help-block">[[${bindingResult != null && bindingResult.hasFieldErrors("firstName") ? bindingResult.getFieldError("firstName").getDefaultMessage() : ""}]]</div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
-	                  <label for="name" class="cols-sm-2 control-label">Nachname</label>
+	                  <label for="lastName" class="cols-sm-2 control-label">Nachname</label>
 	                  <div class="cols-sm-10">
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-	                        <input type="text" class="form-control" name="name" id="name"  placeholder="Dein Nachname"/>
+	                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Dein Nachname" th:value="${userModel.lastName}"/>
 	                     </div>
+	                     <div class="help-block">[[${bindingResult != null && bindingResult.hasFieldErrors("lastName") ? bindingResult.getFieldError("lastName").getDefaultMessage() : ""}]]</div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
@@ -52,8 +55,9 @@
 	                  <div class="cols-sm-10">
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-	                        <input type="text" class="form-control" name="email" id="email"  placeholder="Deine Email-Adresse"/>
+	                        <input type="text" class="form-control" name="email" id="email" placeholder="Deine Email-Adresse" th:value="${userModel.email}"/>
 	                     </div>
+	                     <div class="help-block">[[${bindingResult != null && bindingResult.hasFieldErrors("email") ? bindingResult.getFieldError("email").getDefaultMessage() : ""}]]</div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
@@ -63,15 +67,17 @@
 	                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 	                        <input type="password" class="form-control" name="password" id="password"  placeholder="Dein Passwort"/>
 	                     </div>
+	                     <div class="help-block">[[${passwordError != null ? passwordError : ''}]]</div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
-	                  <label for="confirm" class="cols-sm-2 control-label">Passwortbestätigung</label>
+	                  <label for="confirmPassword" class="cols-sm-2 control-label">Passwortbestätigung</label>
 	                  <div class="cols-sm-10">
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-	                        <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Bestätige dein Passwort"/>
+	                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"  placeholder="Bestätige dein Passwort"/>
 	                     </div>
+	                     <div class="help-block">[[${passwordConfirmError != null ? passwordConfirmError : ''}]]</div>
 	                  </div>
 	               </div>
 	               <hr class="separator" />
@@ -81,7 +87,7 @@
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-venus-mars fa-lg" style="font-size:12px" aria-hidden="true"></i></span>
 	                        <select name="gender" id="gender" class="form-control">
-                        	   <option th:each="gender : ${genders}" th:value="${gender.genderId}" th:text="${gender.name}"></option>
+                        	   <option th:each="gender : ${genders}" th:selected="${gender == userModel.gender}" th:value="${gender.genderId}" th:text="${gender.name}"></option>
 	                        </select>
 	                     </div>
 	                  </div>
@@ -92,26 +98,13 @@
 	                     <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
 	                        <select name="region" id="region" class="form-control">
-	                           <option th:each="region : ${regions}" th:value="${region.regionId}" th:text="${region.name}"></option>
+	                           <option th:each="region : ${regions}" th:selected="${region == userModel.region}" th:value="${region.regionId}" th:text="${region.name}"></option>
 	                        </select>
 	                     </div>
 	                  </div>
 	               </div>
 	               <div class="form-group">
-	                  <label for="premium" class="cols-sm-2 control-label">Premium-Account</label>
-	                  <div class="cols-sm-10">
-	                     <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-star fa-lg" style="font-size:12px" aria-hidden="true"></i></span>
-	                        <select name="premium" id="premium" class="form-control">
-	                           <option value="">Bitte wählen</option>
-	                           <option value="1">Ja</option>
-	                           <option value="0">Nein</option>
-	                        </select>
-	                     </div>
-	                  </div>
-	               </div>
-	               <div class="form-group">
-	                  <button type="button" class="btn btn-primary btn-block ogin-button">Register</button>
+	                  <button type="submit" class="btn btn-primary btn-block ogin-button">Register</button>
 	                  <a th:href="@{'/user/login'}" class="btn btn-default btn-block">Anmelden</a>
 	               </div>
 	            </form>

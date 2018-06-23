@@ -12,14 +12,12 @@
 		<csrf disabled="true"/>
 		
 		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/register" access="permitAll" />
 		<intercept-url pattern="/fill" access="permitAll" />
 		<intercept-url pattern="/about" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
 
-		<!--   intercept-url pattern="/user/**" access="hasRole('ADMIN')" / -->
-		<!-- intercept-url pattern="/**" access="hasRole('USER') or hasRole('ADMIN')" / -->
 		<intercept-url pattern="/**" access="authenticated" />
-		<!-- <intercept-url pattern="/delete" access="hasRole('ADMIN')" /> -->
 
 		<form-login login-page="/login" default-target-url='/' always-use-default-target='true' />
 		<logout logout-url="/logout" />

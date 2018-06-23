@@ -28,16 +28,16 @@ public class UserModel implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 8098173157518993615L;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private GenderModel gender;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private RegionModel region;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<PersonalCharacterModel> personalCharacters;
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@ManyToMany
 	private Set<UserRoleModel> userRoles;
 	
 	@Id
@@ -45,6 +45,7 @@ public class UserModel implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
 	
+	@NotEmpty
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 	
