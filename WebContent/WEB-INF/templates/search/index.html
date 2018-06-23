@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="~{includes/meta :: meta}" />
+	<title>Employee Manager</title>
+	<div th:replace="~{includes/styles :: styles}" />
+	<link rel="stylesheet" th:href="@{/resources/assets/search.css}" />
+</head>
+<body>
+	<div th:replace="~{includes/header :: header}" />
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+	
+				<form class="form-horizontal" method="post" th:action="@{/search/}">
+					 
+					 <div class="form-group inline">
+					 	<label>Geschlecht</label>
+					 	<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default" th:classappend="${genders != null && #lists.contains(genders, gender)} ? 'active' : ''" th:each="gender : ${defaultGenders}">
+						    <input type="checkbox" name="genders[]" th:value="${gender.genderId}" autocomplete="off" th:checked="${genders != null && #lists.contains(genders, gender)}">
+						    [[${gender.name}]]
+						  </label>
+						</div>
+					 </div>
+	
+					 <div class="form-group inline">
+					 	<label for="regions">Bezirk</label>
+					 	<select name="regions[]" id="regions" class="form-control chosen" style="width:500px" multiple>
+			                <option th:value="${region.regionId}" th:each="region : ${defaultRegions}" th:selected="${regions != null && #lists.contains(regions, region)}">[[${region.name}]]</option>
+			            </select>
+					 </div>
+	
+					 <div class="form-group inline">
+					 	<label for="ageFrom">Alter</label>
+					 	<input type="number" id="ageFrom" name="ageFrom" class="form-control" placeholder="Von" th:value="${ageFrom}">
+					 </div>
+	
+					 <div class="form-group inline">
+					 	<input type="number" id="ageTo" name="ageTo" class="form-control" placeholder="Bis" th:value="${ageTo}">
+				 	 </div>
+				 	 
+				 	 <div class="form-group inline">
+				 	 	<button type="submit" class="btn btn-primary">
+				 	 		<i class="fa fa-search"></i>
+				 	 		Search
+			 	 		</button>
+				 	 </div>
+	
+			 	</form>
+	
+			 	<div class="results">
+			 		<div class="row">
+			 			<div class="col-sm-4" th:each="partner : ${partners}">
+				            <div class="card">
+				                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
+				                <div class="avatar">
+				                    <img src="" alt="" />
+				                </div>
+				                <div class="content">
+				                    <p>
+				                    	<b>[[${partner.firstName}]] [[${partner.lastName}]]</b><br/>
+				                       [[${#calendars.format(partner.birthday, 'dd.MM.yyyy')}]]
+			                       </p>
+				                    <p>
+			                    	<a type="button" class="btn btn-info" th:href="@{'/user/' + ${partner.userId}}">
+			                    		<i class="fa fa-user"></i>
+			                    	 	Profil
+		                    	 	</a>
+		                    	 	<a type="button" class="btn btn-default" th:href="@{'/chat/with/' + ${partner.userId}}">
+			                    		<i class="fa fa-comment-o"></i>
+			                    	 	Neue Nachricht
+		                    	 	</a>
+				                    </p>
+				                </div>
+				            </div>
+				        </div>
+	
+						<img class="src-image" th:each="partner : ${partners}" th:src="@{${partner.getProfilePhotoPath()}}"/>
+	
+				    </div>
+			 	</div>
+	
+	      	</div>
+		</div>
+	</div>
+	
+	<div th:replace="~{includes/footer :: footer}" />
+	<div th:replace="~{includes/scripts :: scripts}" />
+	<script th:src="@{/resources/assets/blur.js}"></script>
+	<script>
+		$(document).ready(function() {
+			$('.chosen').chosen();
+		});
+	</script>
+</body>
+</html>

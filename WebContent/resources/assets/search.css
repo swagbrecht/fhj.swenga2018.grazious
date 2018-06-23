@@ -16,20 +16,10 @@
     width: 250px;
 }
 
-.results {
-    margin-left: 270px;
-}
-
 .form-control.half {
     width: 49%;
     display: inline-block;
 }
-
-
-
-
-
-
 
 .src-image {
   display: none;
@@ -68,6 +58,7 @@
 }
 
 .card .avatar img {
+  object-fit: cover;
   width: 100px;
   height: 100px;
   -webkit-border-radius: 50%;
