@@ -72,6 +72,14 @@ public class SiteController {
 		return "login";
 	}
 	
+	@RequestMapping(value = { "/about" }, method = RequestMethod.GET)
+	public String about(Model model) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserModel user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
+		return "about";
+	}
+	
 	@RequestMapping(value = { "/register" })
 	public String register(Model model) {
 		List<GenderModel> genders = genderRepository.findAll();
